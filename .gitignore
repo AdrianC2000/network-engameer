@@ -39,5 +39,5 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
-Logs
-UserSettings
+Logs/
+UserSettings/
