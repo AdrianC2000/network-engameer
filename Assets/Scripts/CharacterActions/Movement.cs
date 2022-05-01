@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] CharacterController character;
-    private Vector3 startingPosition; 
-    
+    public CharacterController character;
+    private Vector3 startingPosition;
+
     void Start()
     {
+        StaticClass.CrossSceneInformation = character;
+        PauseMenu.Camera = character.GetComponentInChildren<Camera>();
+        Collider.Character = character;
         startingPosition = character.transform.position;
     }
     void Update()
