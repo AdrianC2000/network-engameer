@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class FirstQuest : MonoBehaviour
 {
-    public static GameObject questUI;
-    public static Camera NewCamera;
+    [SerializeField] 
+    private GameObject emptyObject; 
+    [SerializeField] 
+    private GameObject movingFirewall;
+    
+    public static GameObject QuestUI;
+    public static Camera TemporaryQuestCamera;
     public static CharacterController Character; 
     
     public void Resume()
     {
-        questUI.SetActive(false);
-        NewCamera.gameObject.SetActive(false);
+        emptyObject.SetActive(true);
+        movingFirewall.SetActive(true);
+        
+        QuestUI.SetActive(false);
+        TemporaryQuestCamera.gameObject.SetActive(false);
         Character.gameObject.SetActive(true);
         Time.timeScale = 1f;
         Collider.FirstTimeStepped = false;
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
     }
 }

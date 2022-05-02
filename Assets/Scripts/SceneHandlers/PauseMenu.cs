@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool IsGamePaused = false;
+    public static Camera CharacterCamera;
     public GameObject pauseMenuUI;
-    public static Camera Camera;
     private Quaternion _cameraRotation;
+    private bool _isGamePaused;
     
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (IsGamePaused)
+            if (_isGamePaused)
             {
                 Resume();
             }
@@ -23,9 +23,9 @@ public class PauseMenu : MonoBehaviour
             }
         }
         
-        if (IsGamePaused)
+        if (_isGamePaused)
         {
-            Camera.transform.rotation = _cameraRotation;
+            CharacterCamera.transform.rotation = _cameraRotation;
         }
     }
 
@@ -33,15 +33,15 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        IsGamePaused = false;
+        _isGamePaused = false;
     }
 
     void Pause()
     {
-        _cameraRotation = Camera.transform.rotation;
+        _cameraRotation = CharacterCamera.transform.rotation;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        IsGamePaused = true;
+        _isGamePaused = true;
     }
 
     public void QuitGame()

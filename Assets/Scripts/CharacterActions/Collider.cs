@@ -1,25 +1,27 @@
-using System;
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 
 public class Collider : MonoBehaviour
 {
-    public GameObject questUI;
-    public Camera NewCamera;
+    [SerializeField] 
+    private GameObject questUI;
+    [SerializeField]
+    private Camera temporaryQuestCamera;
+    
     public static CharacterController Character;
     public static bool FirstTimeStepped = true;
     
     private void OnCollisionEnter(Collision collision)
     {
-        FirstQuest.questUI = questUI;
-        FirstQuest.NewCamera = NewCamera;
-        FirstQuest.Character = Character;
-
         if (collision.gameObject.CompareTag("Router") && FirstTimeStepped)
         {
+            FirstQuest.QuestUI = questUI;
+            FirstQuest.TemporaryQuestCamera = temporaryQuestCamera;
+            FirstQuest.Character = Character;
+            
             questUI.SetActive(true);
             Character.gameObject.SetActive(false);
-            NewCamera.gameObject.SetActive(true);
+            temporaryQuestCamera.gameObject.SetActive(true);
+            
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

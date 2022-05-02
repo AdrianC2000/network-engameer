@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Fire
   - Router
+  - FirstMovingSwitch
+  - ParentObject
   layers:
   - Default
   - TransparentFX
