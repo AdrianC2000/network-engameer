@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FirstQuest : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject emptyObject; 
+    // [SerializeField] 
+    // private GameObject emptyObject; 
     [SerializeField] 
     private GameObject movingFirewall;
     
@@ -15,7 +15,7 @@ public class FirstQuest : MonoBehaviour
     
     public void Resume()
     {
-        emptyObject.SetActive(true);
+        // emptyObject.SetActive(true);
         movingFirewall.SetActive(true);
         
         QuestUI.SetActive(false);

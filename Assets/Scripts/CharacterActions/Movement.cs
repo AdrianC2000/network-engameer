@@ -6,7 +6,6 @@ public class Movement : MonoBehaviour
 {
     public CharacterController character;
     private Vector3 startingPosition;
-    private 
 
     void Start()
     {

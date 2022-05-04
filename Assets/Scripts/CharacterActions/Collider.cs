@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Collider : MonoBehaviour
@@ -6,9 +7,10 @@ public class Collider : MonoBehaviour
     private GameObject questUI;
     [SerializeField]
     private Camera temporaryQuestCamera;
-    
+
     public static CharacterController Character;
     public static bool FirstTimeStepped = true;
+    
     
     private void OnCollisionEnter(Collision collision)
     {
