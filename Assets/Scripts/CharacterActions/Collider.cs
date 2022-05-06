@@ -1,4 +1,4 @@
-using System;
+using CharacterActions;
 using UnityEngine;
 
 public class Collider : MonoBehaviour
@@ -8,25 +8,42 @@ public class Collider : MonoBehaviour
     [SerializeField]
     private Camera temporaryQuestCamera;
 
-    public static CharacterController Character;
+    private CharacterController _character;
+    public static Player Player;
     public static bool FirstTimeStepped = true;
-    
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Router") && FirstTimeStepped)
         {
+            _character = Player.GetCharacter();
             FirstQuest.QuestUI = questUI;
             FirstQuest.TemporaryQuestCamera = temporaryQuestCamera;
-            FirstQuest.Character = Character;
+            FirstQuest.Player = Player;
             
             questUI.SetActive(true);
-            Character.gameObject.SetActive(false);
+            _character.gameObject.SetActive(false);
             temporaryQuestCamera.gameObject.SetActive(true);
             
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+    }
+
+    private void OnTriggerEnter(UnityEngine.Collider other)
+    {
+        if (other.CompareTag("FirstMovingSwitch"))
+        {
+            _character.transform.parent = other.transform;
+        }
+    }
+    
+    private void OnTriggerExit(UnityEngine.Collider other)
+    {
+        if (other.CompareTag("FirstMovingSwitch"))
+        {
+            _character.transform.parent = null;
         }
     }
 }

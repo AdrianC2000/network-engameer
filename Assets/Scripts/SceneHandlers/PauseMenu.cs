@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using CharacterActions;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static Camera CharacterCamera;
-    public GameObject pauseMenuUI;
+    [SerializeField]
+    private GameObject pauseMenuUI;
+
+    public static Player Player; 
     private Quaternion _cameraRotation;
     private bool _isGamePaused;
     
@@ -25,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         
         if (_isGamePaused)
         {
-            CharacterCamera.transform.rotation = _cameraRotation;
+            Player.GetCharacter().GetComponentInChildren<Camera>().transform.rotation = _cameraRotation;
         }
     }
 
@@ -36,9 +37,9 @@ public class PauseMenu : MonoBehaviour
         _isGamePaused = false;
     }
 
-    void Pause()
+    private void Pause()
     {
-        _cameraRotation = CharacterCamera.transform.rotation;
+        _cameraRotation = Player.GetCharacter().GetComponentInChildren<Camera>().transform.rotation;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         _isGamePaused = true;

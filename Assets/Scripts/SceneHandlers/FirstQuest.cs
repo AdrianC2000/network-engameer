@@ -1,27 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using CharacterActions;
 using UnityEngine;
 
 public class FirstQuest : MonoBehaviour
 {
-    // [SerializeField] 
-    // private GameObject emptyObject; 
     [SerializeField] 
     private GameObject movingFirewall;
     
     public static GameObject QuestUI;
     public static Camera TemporaryQuestCamera;
-    public static CharacterController Character; 
+    public static Player Player;
     
-    public void Resume()
+    public void ResumeIfCorrectAnswer()
     {
-        // emptyObject.SetActive(true);
         movingFirewall.SetActive(true);
-        
+        Collider.FirstTimeStepped = false;
+        Player.IncreaseCorrectAnswersCounter();
+        Resume();
+    }
+    
+    public void ResumeIfWrongAnswer()
+    {
+        PlayerHandler.Respawn(Player);
+        Resume();
+    }
+
+    private void Resume()
+    {
         QuestUI.SetActive(false);
         TemporaryQuestCamera.gameObject.SetActive(false);
-        Character.gameObject.SetActive(true);
+        Player.GetCharacter().gameObject.SetActive(true);
         Time.timeScale = 1f;
-        Collider.FirstTimeStepped = false;
+        Player.IncreaseTotalAnswersCounter();
     }
 }
