@@ -8,6 +8,7 @@ TagManager:
   - Router
   - FirstMovingSwitch
   - ParentObject
+  - Quest
   layers:
   - Default
   - TransparentFX

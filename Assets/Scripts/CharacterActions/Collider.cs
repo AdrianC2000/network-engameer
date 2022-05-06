@@ -17,9 +17,8 @@ public class Collider : MonoBehaviour
         if (collision.gameObject.CompareTag("Router") && FirstTimeStepped)
         {
             _character = Player.GetCharacter();
-            FirstQuest.QuestUI = questUI;
-            FirstQuest.TemporaryQuestCamera = temporaryQuestCamera;
-            FirstQuest.Player = Player;
+            Quest.TemporaryQuestCamera = temporaryQuestCamera;
+            Quest.Player = Player;
             
             questUI.SetActive(true);
             _character.gameObject.SetActive(false);

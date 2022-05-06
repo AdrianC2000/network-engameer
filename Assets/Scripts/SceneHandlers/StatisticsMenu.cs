@@ -15,11 +15,7 @@ public class StatisticsMenu : MonoBehaviour
     private GameObject statisticsMenuUI;
     private bool _areStatisticsVisible;
     public static Player Player;
-
-    private void Awake()
-    {
-        
-    }
+    
     private void Update()
     {
         UpdateStatistics();
@@ -61,7 +57,7 @@ public class StatisticsMenu : MonoBehaviour
             correctAnswersPercentageTextMesh.text = "Brak odpowiedzi";
         }
 
-        double actualTime = Time.realtimeSinceStartup;
+        double actualTime = Time.time;
         
         if (Math.Round(actualTime) < 60)
         {

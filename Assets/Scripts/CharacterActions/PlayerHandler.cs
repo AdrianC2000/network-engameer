@@ -9,6 +9,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void Start()
     {
+        Quest.ReloadQuestsFile();
         _player = new Player(character, character.transform.position);
         Collider.Player = _player;
         PauseMenu.Player = _player; 
