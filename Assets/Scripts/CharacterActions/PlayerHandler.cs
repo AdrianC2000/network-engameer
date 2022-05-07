@@ -23,7 +23,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void RespawnIfFallen()
     {
-        if (character.transform.position.y <= 0)
+        if (character.transform.position.y <= -10)
         {
             Respawn(_player);
             _player.IncreaseDeathsCounter();
