@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Quest : MonoBehaviour
 {
     [SerializeField] 
-    private GameObject movingFirewall;
+    private GameObject movingElement;
     [SerializeField]
     private GameObject questUI;
     public static Camera TemporaryQuestCamera;
@@ -27,7 +27,7 @@ public class Quest : MonoBehaviour
     
     public void ResumeIfCorrectAnswer()
     {
-        movingFirewall.SetActive(true);
+        movingElement.SetActive(true);
         Collider.FirstTimeStepped = false;
         Player.IncreaseCorrectAnswersCounter();
         Resume();

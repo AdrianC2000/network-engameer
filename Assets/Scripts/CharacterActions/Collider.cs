@@ -32,7 +32,8 @@ public class Collider : MonoBehaviour
 
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
-        if (other.CompareTag("FirstMovingSwitch"))
+        _character = Player.GetCharacter();
+        if (other.CompareTag("ParentObject"))
         {
             _character.transform.parent = other.transform;
         }
@@ -40,7 +41,7 @@ public class Collider : MonoBehaviour
     
     private void OnTriggerExit(UnityEngine.Collider other)
     {
-        if (other.CompareTag("FirstMovingSwitch"))
+        if (other.CompareTag("ParentObject"))
         {
             _character.transform.parent = null;
         }
