@@ -46,27 +46,27 @@ public class StatisticsMenu : MonoBehaviour
 
     private void UpdateStatistics()
     {
-        deathsCounterTextMesh.text = "Śmierci: " + Player.GetDeathsCounter();
+        deathsCounterTextMesh.text = "UPADKI: " + Player.GetDeathsCounter();
         if (Player.GetTotalAnswersCounter() != 0)
         {
             double fraction = (double) Player.GetCorrectAnswersCounter() / (double) Player.GetTotalAnswersCounter();
             double percentage = Math.Round(fraction, 2) * 100;
-            correctAnswersPercentageTextMesh.text = "Poprawne odpowiedzi: " + percentage + "%";
+            correctAnswersPercentageTextMesh.text = "POPRAWNE ODPOWIEDZI: " + percentage + "%";
         } else
         {
-            correctAnswersPercentageTextMesh.text = "Brak odpowiedzi";
+            correctAnswersPercentageTextMesh.text = "POPRAWNE ODPOWIEDZI: -";
         }
 
         double actualTime = Time.time;
         
         if (Math.Round(actualTime) < 60)
         {
-            timerTextMesh.text = "Czas gry: " + Math.Round(actualTime) + "s";
+            timerTextMesh.text = "CZAS GRY: " + Math.Round(actualTime) + "s";
         } else if (Math.Round(actualTime) < 3600)
         {
             int mins = (int) Math.Round(actualTime) / 60;
             double seconds = Math.Round(actualTime) - mins * 60;
-            timerTextMesh.text = "Czas gry: " + mins + "m " + seconds + "s";
+            timerTextMesh.text = "CZAS GRY: " + mins + "m " + seconds + "s";
         }
     }
 }
