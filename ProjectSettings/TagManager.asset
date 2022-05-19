@@ -9,6 +9,7 @@ TagManager:
   - FirstMovingSwitch
   - ParentObject
   - Quest
+  - Firewall
   layers:
   - Default
   - TransparentFX
