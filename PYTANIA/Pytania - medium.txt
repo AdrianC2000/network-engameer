@@ -1,0 +1,51 @@
+1. Któy z poniższych protokołów routingu jest typu distance-vector?
+RIP
+OSPF
+ISIS
+
+2. Która z poniższych komend wypisze tablicę routingu w systemie Linux?
+netstat -6
+netstat -rn
+netstat -tupan
+
+3. Która z poniższych ramek rozgłasza informacje o sieci?
+beacon
+ATIM
+RTS
+
+4. Który z poniższych standardów może pracować w paśmie 5GHz?
+802.11b
+802.11ac
+802.11ad
+
+
+5. Z jakiego portu korzysta Telnet?
+23
+22
+21
+
+6. Ile bitów ma pole ToS w pakiecie IP?
+8 bitów
+6 bitów
+2 bity
+
+7. Warstwa prezentacji to w modelu OSI/ISO:
+L6
+L7
+L5
+
+8. Warstwa transportowa to w modelu OSI/ISO:
+L4
+L3
+L2
+
+9. Ile bitów ma pole EXP w nagłówku MPLS? 
+3 bity
+4 bity
+2 bity
+
+10. Który z poniższych protokołów służy do wymiany plików?
+FTP
+Telnet
+RSVP
+

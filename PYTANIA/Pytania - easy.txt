@@ -1,0 +1,49 @@
+1. Któy z poniższych protokołów jest protokołem routingu jest zewnętrzenego?
+BGP
+RIP
+OSPF
+
+2. Która z poniższych komend wypisze informacje o plikach w systemie Linux?
+ls -l
+netstat -u
+grep
+
+3. Który z poniższych programów nie jest edytorem tekstu w systemie Linux?
+wireshark
+vim
+nano 
+
+4. Na jakiej częstotliwości pracuje Bluetooth?
+2,4 GHz
+5 GHz
+1 GHz
+
+5. Z jakiego portu korzysta HTTP?
+80
+7
+420
+
+6. Ile bitów ma pole DSCP w pakiecie IP?
+6 bitów
+8 bitów
+2 bity
+
+7. Warstwa sieciowa to w modelu OSI/ISO:
+L3
+L2
+L4
+
+8. Warstwa łącza danych to w modelu OSI/ISO:
+L2
+L3
+L4
+
+9. Co oznacza pole TTL w pakiecie IP? 
+Time To Live
+Total Time Length
+Try To Laugh
+
+10. Który z poniższych protokołów jest bezpołączeniowy?
+UDP
+TCP
+SCTP

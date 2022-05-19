@@ -1,0 +1,51 @@
+1. Któy z poniższych protokołów nie służy do przenoszenia etykiet MPLS?
+ATM
+LDP
+MP-BGP 
+
+2. Która z poniższych komend nie służy do zmiany adresu IP systemie Linux?
+ip addr
+ifconfig
+netstat
+
+3. Która z poniższych architektur 802.11 oznacza sieć ad-hoc?
+IBSS
+BSS
+AHC
+
+4. Który z poniższych standardów 802.11 może pracować w paśmie 60 GHz?
+802.11ad
+802.11ax
+802.11ac
+
+
+5. Z jakiego portu korzysta protokół IAPP?
+3517
+5061
+465
+
+6. Ile wynosi administrative distance protokołu ISIS?
+115
+90
+120
+
+7. Długość fali 850 nm występuje w światłowodzie:
+wielomodowym
+jednomodowym
+bezmodowym
+
+8. Który z poniższych obszarów OSPF nie dodaje trasy domyślnej?
+NSSA
+stub
+tottaly stub
+
+9. Ile bitów ma pole S w nagłówku MPLS? 
+1 bit
+2 bity
+4 bity
+
+10. Który z poniższych protokołów wprowadza WPA3?
+802.11bi
+802.11ba
+802.11bh
+
