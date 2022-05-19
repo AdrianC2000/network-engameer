@@ -1,0 +1,14 @@
+1. Wyślij ping na adres 192.168.1.1
+ping 192.168.1.1
+
+2. Utwórz proces OSPF o numerze 7
+router ospf 7
+
+3. Ustaw na interfejsie adres 192.168.1.1/24
+ip address 192.168.1.1 255.255.255.0
+
+4. Ustaw nazwę routera R1
+hostname R1
+
+5. Wyślij traceroute na adres 192.168.1.1
+traceroute 192.168.1.1

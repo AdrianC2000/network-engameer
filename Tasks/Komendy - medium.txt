@@ -1,0 +1,14 @@
+1. OSPF - dodaj sieć 192.168.1.0/24, obszar 0
+network 192.168.1.0 0.0.0.255 area 0
+
+2. Dokonaj redystrybucji tras statycznych
+redistribute static
+
+3. Dodaj trasę statyczną do tunelu 100 dla sieci 192.168.0.0/24 
+ip route 192.168.0.0 255.255.255.0 Tunnel 100
+
+4. OSPF - ustaw loopback 0 jako router id
+ospf router-id loopback 0
+
+5. Włącz obsługę tuneli MPLS-TE
+mpls traffic-eng tunnel

@@ -4,14 +4,14 @@ LDP
 MP-BGP 
 
 2. Która z poniższych komend nie służy do zmiany adresu IP systemie Linux?
+netstat
 ip addr
 ifconfig
-netstat
 
-3. Która z poniższych architektur 802.11 oznacza sieć ad-hoc?
-IBSS
-BSS
-AHC
+3. Jaki jest adres sumaryczny sieci 172.21.136.0/24 i 172.21.143.0/24?
+172.21.136.0/21
+172.21.136.0/20
+172.21.136.0/22
 
 4. Który z poniższych standardów 802.11 może pracować w paśmie 60 GHz?
 802.11ad
@@ -44,7 +44,7 @@ tottaly stub
 2 bity
 4 bity
 
-10. Który z poniższych protokołów wprowadza WPA3?
+10. Który z poniższych standardów wprowadza WPA3?
 802.11bi
 802.11ba
 802.11bh

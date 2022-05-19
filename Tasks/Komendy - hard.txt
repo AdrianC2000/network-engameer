@@ -1,0 +1,14 @@
+1. OSPF - ustaw obszar 12 jako totally stubby
+area 12 stub no-summary
+
+2. Dokonaj redystrybucji trasy domyślnej
+default-information originate
+
+3. Włącz routing IPv6
+ipv6 unicast-routing
+
+4. RIP - wyłącz routing klasowy
+no auto-summary
+
+5. Ustaw najwyższe możliwe priorytety tunelu MPLS-TE
+tunnel mpls traffic-eng priority 0 0

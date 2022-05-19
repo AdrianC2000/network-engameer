@@ -4,8 +4,8 @@ OSPF
 ISIS
 
 2. Która z poniższych komend wypisze tablicę routingu w systemie Linux?
-netstat -6
 netstat -rn
+netstat -6
 netstat -tupan
 
 3. Która z poniższych ramek rozgłasza informacje o sieci?
@@ -14,10 +14,9 @@ ATIM
 RTS
 
 4. Który z poniższych standardów może pracować w paśmie 5GHz?
-802.11b
 802.11ac
+802.11b
 802.11ad
-
 
 5. Z jakiego portu korzysta Telnet?
 23
