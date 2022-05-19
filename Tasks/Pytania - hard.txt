@@ -3,10 +3,10 @@ ATM
 LDP
 MP-BGP 
 
-2. Która z poniższych komend nie służy do zmiany adresu IP systemie Linux?
-netstat
-ip addr
-ifconfig
+2. Ile wynosi wartość pola EXP (MPLS) jeśli DSCP (IPv4) wynosi 10?
+1
+10
+2
 
 3. Jaki jest adres sumaryczny sieci 172.21.136.0/24 i 172.21.143.0/24?
 172.21.136.0/21

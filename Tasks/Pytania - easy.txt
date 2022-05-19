@@ -1,17 +1,17 @@
-1. Któy z poniższych protokołów jest protokołem routingu jest zewnętrzenego?
+1. Któy z poniższych protokołów jest protokołem routingu zewnętrznego?
 BGP
 RIP
 OSPF
 
-2. Która z poniższych komend wypisze informacje o plikach w systemie Linux?
-ls -l
-netstat -u
-grep
+2. Która z poniższych komend nie służy do zmiany adresu IP systemie Linux?
+netstat
+ip addr
+ifconfig
 
-3. Który z poniższych programów nie jest edytorem tekstu w systemie Linux?
-wireshark
-vim
-nano 
+3. Jaki jest prawidłowy format adresu IPv4?
+192.168.1.1
+127.0.0.256
+::1
 
 4. Na jakiej częstotliwości pracuje Bluetooth?
 2,4 GHz
