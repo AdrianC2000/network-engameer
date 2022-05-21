@@ -131,6 +131,13 @@ public class Collider : MonoBehaviour
         {
             _character.transform.parent = other.transform;
         }
+        if (other.CompareTag("FallingElement"))
+        {
+            if (other.gameObject.GetComponent<Rigidbody>() == null)
+            {
+                other.gameObject.AddComponent<Rigidbody>();
+            }
+        }
     }
     
     private void OnTriggerExit(UnityEngine.Collider other)

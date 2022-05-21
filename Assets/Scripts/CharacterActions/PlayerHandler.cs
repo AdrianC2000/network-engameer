@@ -1,12 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
 using CharacterActions;
 using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
 {
-    [SerializeField]
-    private CharacterController character;
+    [SerializeField] private CharacterController character;
     private Player _player;
-    public Vector3 respawnCoordinates; 
+    public Vector3 respawnCoordinates;
 
     private void Start()
     {
@@ -14,7 +15,7 @@ public class PlayerHandler : MonoBehaviour
         QuestInput.ReloadQuestsFile();
         _player = new Player(character, character.transform.position);
         Collider.Player = _player;
-        PauseMenu.Player = _player; 
+        PauseMenu.Player = _player;
         StatisticsMenu.Player = _player;
     }
 

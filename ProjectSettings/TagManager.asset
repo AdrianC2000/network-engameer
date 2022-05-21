@@ -11,6 +11,7 @@ TagManager:
   - Quest
   - Firewall
   - MovingElement3
+  - FallingElement
   layers:
   - Default
   - TransparentFX
