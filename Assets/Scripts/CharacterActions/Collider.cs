@@ -7,6 +7,8 @@ public class Collider : MonoBehaviour
 {
     [SerializeField] 
     private GameObject questUI;
+    [SerializeField] 
+    private GameObject questInputUI;
     [SerializeField]
     private Camera temporaryQuestCamera;
 
@@ -20,7 +22,7 @@ public class Collider : MonoBehaviour
         {
             GameObject movingElement;
             // Nothing will be loaded if question on that device has already been answered correctly
-            if (collision.gameObject.CompareTag("Firewall") || collision.gameObject.CompareTag("Router"))
+            if (collision.gameObject.CompareTag("Firewall"))
             {
                 try
                 {
@@ -56,6 +58,52 @@ public class Collider : MonoBehaviour
                     ActualQuestDeviceName = collision.gameObject.name;
 
                     questUI.SetActive(true);
+                    _character.gameObject.SetActive(false);
+                    temporaryQuestCamera.gameObject.SetActive(true);
+
+                    Time.timeScale = 0f;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+            }
+            if (collision.gameObject.CompareTag("Router"))
+            {
+                try
+                {
+                    String tag = "MovingElement" + collision.gameObject.name.Last();
+                    movingElement = collision.gameObject.transform.Find(tag).gameObject;
+                }
+                catch (Exception)
+                {
+                    movingElement = null;
+                }
+
+                _character = Player.GetCharacter();
+                QuestInput.TemporaryQuestCamera = temporaryQuestCamera;
+                QuestInput.Player = Player;
+
+                Debug.Log("Jestem w dobrym miejscu");
+
+                if (Player.GetFirstQuestCall())
+                {
+                    // Second step on the device and every subsequent one
+                    questInputUI.SetActive(true);
+                    _character.gameObject.SetActive(false);
+                    temporaryQuestCamera.gameObject.SetActive(true);
+
+                    Time.timeScale = 0f;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+                else 
+                {
+                    // First step on the device -> loading and drawing the quest
+                    QuestInput actualQuest = new QuestInput(movingElement, questInputUI);
+                    actualQuest.DrawTask();
+                    Player.SetFirstQuestCall(true);
+                    ActualQuestDeviceName = collision.gameObject.name;
+
+                    questInputUI.SetActive(true);
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
 

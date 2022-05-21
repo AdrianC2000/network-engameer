@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
     {
         String difficultyLevel = EventSystem.current.currentSelectedGameObject.name;
         Quest.DifficultyPath = Quest.folderPath + difficultyLevel + "Quests/";
+        Quest.DifficultyPath = QuestInput.folderPath + difficultyLevel + "InputQuests/";
     }
 
     public void ShowMenu()

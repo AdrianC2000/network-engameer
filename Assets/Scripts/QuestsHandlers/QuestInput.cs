@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Quest
+public class QuestInput
 {
     private GameObject _questUI;
     private GameObject _movingElement;
@@ -16,14 +16,30 @@ public class Quest
     public static Player Player;
     public static String DifficultyLevel = "Easy";
     public static string folderPath = Directory.GetCurrentDirectory() + "/Assets/Scripts/QuestsHandlers/";
-    public static string DifficultyPath = folderPath + DifficultyLevel + "Quests/";
+    public static string DifficultyPath = folderPath + DifficultyLevel + "InputQuests/";
     static string jsonFileName = "Quests.json";
     static string _originalJsonFileName = "OriginalQuests.json";
+    private String _correctAnswer; 
 
-    public Quest(GameObject movingElement, GameObject questUI)
+    public QuestInput(GameObject movingElement, GameObject questUI)
     {
         _movingElement = movingElement;
         _questUI = questUI;
+    }
+
+    public void CheckInput()
+    {
+        TextMeshProUGUI textField = (TextMeshProUGUI) _questUI.transform.Find("AnswerInputField").Find("Text Area").Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
+        String answer = textField.text;
+        answer = answer.Replace("\u200B", "");
+        if (answer.Equals(_correctAnswer))
+        {
+            ResumeIfCorrectAnswer();
+        }
+        else
+        {
+            ResumeIfWrongAnswer();
+        }
     }
 
     public void ResumeIfCorrectAnswer()
@@ -37,7 +53,7 @@ public class Quest
         Player.SetRespawnPosition(Player.GetCharacter().transform.position);
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
-        DeleteQuestFromQuestUI(3);
+        DeleteQuestFromQuestUI();
         Resume();
     }
     
@@ -57,7 +73,7 @@ public class Quest
         Player.IncreaseTotalAnswersCounter();
     }
 
-    public void DrawTask(int answersNumber)
+    public void DrawTask()
     {
         List<UserQuest> userQuestsList = LoadJson();
         int listLength = userQuestsList.Count;
@@ -70,41 +86,14 @@ public class Quest
 
         String json = JsonConvert.SerializeObject(userQuestsListLeft);
         File.WriteAllText(DifficultyPath + jsonFileName, json);
-
-        int drawnCorrectButtonIndex = r.Next(0, answersNumber);
         
         TextMeshProUGUI questionTestMesh = (TextMeshProUGUI) _questUI.transform.Find("Question").GetComponents(typeof(TextMeshProUGUI))[0];
         questionTestMesh.text = userQuestsList[drawnIndex].question;
 
-        Transform[] transforms = GetAnswersTransforms(listLength);
-        int wrongQuestionIndex = 0;
-        for (int i = 0; i < answersNumber; i++)
-        {
-            if (i == drawnCorrectButtonIndex)
-            {
-                TextMeshProUGUI answerTestMesh = (TextMeshProUGUI) transforms[i].Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
-                answerTestMesh.text = userQuestsList[drawnIndex].answers.correct;
-                transforms[i].GetComponent<Button>().onClick.AddListener(ResumeIfCorrectAnswer);
-
-            } else
-            {
-                TextMeshProUGUI answerTestMesh = (TextMeshProUGUI) transforms[i].Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
-                answerTestMesh.text = userQuestsList[drawnIndex].answers.wrong[wrongQuestionIndex];
-                transforms[i].GetComponent<Button>().onClick.AddListener(ResumeIfWrongAnswer);
-                wrongQuestionIndex += 1;
-            }
-        }
+        _correctAnswer = userQuestsList[drawnIndex].answers.correct;
+        _questUI.transform.Find("ConfirmButton").GetComponent<Button>().onClick.AddListener(CheckInput);
     }
 
-    public void DeleteQuestFromQuestUI(int answersNumber)
-    {
-        Transform[] transforms = GetAnswersTransforms(answersNumber);
-        for (int i = 0; i < answersNumber; i++)
-        {
-            transforms[i].GetComponent<Button>().onClick.RemoveAllListeners();
-        }
-    }
-    
     private List<UserQuest> LoadJson()
     {
         using (StreamReader streamReader = new StreamReader(DifficultyPath + jsonFileName))
@@ -114,20 +103,10 @@ public class Quest
             return items; 
         }
     }
-
-    private Transform[] GetAnswersTransforms(int listLength)
+    
+    public void DeleteQuestFromQuestUI()
     {
-        Transform[] transforms = new Transform[listLength];
-        int i = 0; 
-        foreach (Transform child in _questUI.transform)
-        {
-            if (child.name == "Answer")
-            {
-                transforms[i] = child;
-                i += 1;
-            }
-        }
-        return transforms;
+        _questUI.transform.Find("ConfirmButton").GetComponent<Button>().onClick.RemoveAllListeners();
     }
 
     public static void ReloadQuestsFile()
