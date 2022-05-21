@@ -51,6 +51,7 @@ public class Quest
     private void Resume()
     {
         _questUI.SetActive(false);
+        Collider.IsQuestOn = false;
         TemporaryQuestCamera.gameObject.SetActive(false);
         Player.GetCharacter().gameObject.SetActive(true);
         Time.timeScale = 1f;

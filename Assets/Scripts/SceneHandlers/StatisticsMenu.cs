@@ -19,7 +19,7 @@ public class StatisticsMenu : MonoBehaviour
     private void Update()
     {
         UpdateStatistics();
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && !PauseMenu.IsGamePaused && !Collider.IsQuestOn)
         {
             if (_areStatisticsVisible)
             {

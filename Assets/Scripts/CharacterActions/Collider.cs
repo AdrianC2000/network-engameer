@@ -11,10 +11,13 @@ public class Collider : MonoBehaviour
     private GameObject questInputUI;
     [SerializeField]
     private Camera temporaryQuestCamera;
+    [SerializeField]
+    private GameObject statisticsMenuUI;
 
     private CharacterController _character;
     public static Player Player;
     public static string ActualQuestDeviceName;
+    public static bool IsQuestOn; 
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,6 +45,8 @@ public class Collider : MonoBehaviour
                 {
                     // Second step on the device and every subsequent one
                     questUI.SetActive(true);
+                    statisticsMenuUI.SetActive(false);
+                    IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
 
@@ -58,6 +63,8 @@ public class Collider : MonoBehaviour
                     ActualQuestDeviceName = collision.gameObject.name;
 
                     questUI.SetActive(true);
+                    statisticsMenuUI.SetActive(false);
+                    IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
 
@@ -81,13 +88,13 @@ public class Collider : MonoBehaviour
                 _character = Player.GetCharacter();
                 QuestInput.TemporaryQuestCamera = temporaryQuestCamera;
                 QuestInput.Player = Player;
-
-                Debug.Log("Jestem w dobrym miejscu");
-
+                
                 if (Player.GetFirstQuestCall())
                 {
                     // Second step on the device and every subsequent one
                     questInputUI.SetActive(true);
+                    statisticsMenuUI.SetActive(false);
+                    IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
 
@@ -104,6 +111,8 @@ public class Collider : MonoBehaviour
                     ActualQuestDeviceName = collision.gameObject.name;
 
                     questInputUI.SetActive(true);
+                    statisticsMenuUI.SetActive(false);
+                    IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
 

@@ -5,26 +5,28 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject pauseMenuUI;
-
+    [SerializeField]
+    private GameObject statisticsMenuUI;
     public static Player Player; 
     private Quaternion _cameraRotation;
-    private bool _isGamePaused;
+    public static bool IsGamePaused;
     
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_isGamePaused)
+            if (IsGamePaused)
             {
                 Resume();
             }
             else
             {
+                statisticsMenuUI.SetActive(false);
                 Pause();
             }
         }
         
-        if (_isGamePaused)
+        if (IsGamePaused)
         {
             Player.GetCharacter().GetComponentInChildren<Camera>().transform.rotation = _cameraRotation;
         }
@@ -34,7 +36,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        _isGamePaused = false;
+        IsGamePaused = false;
     }
 
     private void Pause()
@@ -42,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         _cameraRotation = Player.GetCharacter().GetComponentInChildren<Camera>().transform.rotation;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        _isGamePaused = true;
+        IsGamePaused = true;
     }
 
     public void QuitGame()

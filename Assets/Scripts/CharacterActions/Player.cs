@@ -31,13 +31,11 @@ namespace CharacterActions
         
         public Vector3 GetRespawnPosition()
         {
-            Debug.Log("Actual respawn position: " + _respawnPosition);
             return _respawnPosition;
         }
         
         public void SetRespawnPosition(Vector3 respawnPosition)
         {
-            Debug.Log("New respawn position: " + respawnPosition);
             _respawnPosition = respawnPosition;
         }
         

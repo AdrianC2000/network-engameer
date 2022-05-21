@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 173184881}
+  statisticsMenuUI: {fileID: 1550770778}
 --- !u!1 &92473328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4709,7 @@ MonoBehaviour:
   questUI: {fileID: 1420509332}
   questInputUI: {fileID: 1833660960}
   temporaryQuestCamera: {fileID: 480619824}
+  statisticsMenuUI: {fileID: 1550770778}
 --- !u!1 &1789683573
 GameObject:
   m_ObjectHideFlags: 0
