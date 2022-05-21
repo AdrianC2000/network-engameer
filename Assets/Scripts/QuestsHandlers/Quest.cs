@@ -19,6 +19,9 @@ public class Quest
     public static string DifficultyPath = folderPath + DifficultyLevel + "Quests/";
     static string jsonFileName = "Quests.json";
     static string _originalJsonFileName = "OriginalQuests.json";
+    public static AudioSource audiosource; 
+    public static AudioClip correctAnswer;
+    public static AudioClip wrongAnswer;
 
     public Quest(GameObject movingElement, GameObject questUI)
     {
@@ -38,22 +41,32 @@ public class Quest
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
         DeleteQuestFromQuestUI(3);
-        Resume();
+        Resume(true);
     }
     
     public void ResumeIfWrongAnswer()
     {
         PlayerHandler.Respawn(Player);
         Player.SetFirstQuestCall(true);
-        Resume();
+        Resume(false);
     }
 
-    private void Resume()
+    private void Resume(bool wasAnswerCorrect)
     {
         _questUI.SetActive(false);
         Collider.IsQuestOn = false;
         TemporaryQuestCamera.gameObject.SetActive(false);
         Player.GetCharacter().gameObject.SetActive(true);
+        if (wasAnswerCorrect)
+        {
+            audiosource.clip = correctAnswer;
+            audiosource.Play();
+        }
+        else
+        {
+            audiosource.clip = wrongAnswer;
+            audiosource.Play();
+        }
         Time.timeScale = 1f;
         Player.IncreaseTotalAnswersCounter();
     }

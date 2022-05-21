@@ -20,6 +20,9 @@ public class QuestInput
     static string jsonFileName = "Quests.json";
     static string _originalJsonFileName = "OriginalQuests.json";
     private String _correctAnswer; 
+    public static AudioSource audiosource;
+    public static AudioClip correctAnswer;
+    public static AudioClip wrongAnswer;
 
     public QuestInput(GameObject movingElement, GameObject questUI)
     {
@@ -54,22 +57,32 @@ public class QuestInput
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
         DeleteQuestFromQuestUI();
-        Resume();
+        Resume(true);
     }
     
     public void ResumeIfWrongAnswer()
     {
         PlayerHandler.Respawn(Player);
         Player.SetFirstQuestCall(true);
-        Resume();
+        Resume(false);
     }
 
-    private void Resume()
+    private void Resume(bool wasAnswerCorrect)
     {
         _questUI.SetActive(false);
         Collider.IsQuestOn = false; 
         TemporaryQuestCamera.gameObject.SetActive(false);
         Player.GetCharacter().gameObject.SetActive(true);
+        if (wasAnswerCorrect)
+        {
+            audiosource.clip = correctAnswer;
+            audiosource.Play();
+        }
+        else
+        {
+            audiosource.clip = wrongAnswer;
+            audiosource.Play();
+        }
         Time.timeScale = 1f;
         Player.IncreaseTotalAnswersCounter();
     }
