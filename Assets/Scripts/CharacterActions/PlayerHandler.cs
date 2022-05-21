@@ -6,6 +6,7 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField]
     private CharacterController character;
     private Player _player;
+    public Vector3 respawnCoordinates; 
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class PlayerHandler : MonoBehaviour
     public static void Respawn(Player player)
     {
         player.GetCharacter().enabled = false;
-        player.GetCharacter().transform.position = player.GetStartingPosition();
+        player.GetCharacter().transform.position = player.GetRespawnPosition();
         player.GetCharacter().enabled = true;
     }
 }

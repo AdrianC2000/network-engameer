@@ -4,51 +4,60 @@ using System.IO;
 using CharacterActions;
 using Newtonsoft.Json;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Quest : MonoBehaviour
+public class Quest
 {
-    [SerializeField] 
-    private GameObject movingElement;
-    [SerializeField]
-    private GameObject questUI;
+    private GameObject _questUI;
+    private GameObject _movingElement;
     public static Camera TemporaryQuestCamera;
     public static Player Player;
-    
-    static string _folderPath = Directory.GetCurrentDirectory() + "/Assets/Scripts/QuestsHandlers/";
+    public static String DifficultyLevel = "Easy";
+    public static string folderPath = Directory.GetCurrentDirectory() + "/Assets/Scripts/QuestsHandlers/";
+    public static string DifficultyPath = folderPath + DifficultyLevel + "Quests/";
     static string jsonFileName = "Quests.json";
     static string _originalJsonFileName = "OriginalQuests.json";
 
-    private void Start()
+    public Quest(GameObject movingElement, GameObject questUI)
     {
-        DrawTask(3);
+        _movingElement = movingElement;
+        _questUI = questUI;
     }
-    
+
     public void ResumeIfCorrectAnswer()
     {
-        movingElement.SetActive(true);
-        Collider.FirstTimeStepped = false;
+        if (_movingElement != null)
+        {
+            _movingElement.SetActive(true);
+        }
+
         Player.IncreaseCorrectAnswersCounter();
+        Player.SetRespawnPosition(Player.GetCharacter().transform.position);
+        Player.SetFirstQuestCall(false);
+        Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
+        DeleteQuestFromQuestUI(3);
         Resume();
     }
     
     public void ResumeIfWrongAnswer()
     {
         PlayerHandler.Respawn(Player);
+        Player.SetFirstQuestCall(true);
         Resume();
     }
 
     private void Resume()
     {
-        questUI.SetActive(false);
+        _questUI.SetActive(false);
         TemporaryQuestCamera.gameObject.SetActive(false);
         Player.GetCharacter().gameObject.SetActive(true);
         Time.timeScale = 1f;
         Player.IncreaseTotalAnswersCounter();
     }
 
-    private void DrawTask(int answersNumber)
+    public void DrawTask(int answersNumber)
     {
         List<UserQuest> userQuestsList = LoadJson();
         int listLength = userQuestsList.Count;
@@ -60,11 +69,11 @@ public class Quest : MonoBehaviour
         userQuestsListLeft.Remove(userQuestsList[drawnIndex]);
 
         String json = JsonConvert.SerializeObject(userQuestsListLeft);
-        File.WriteAllText(_folderPath + jsonFileName, json);
+        File.WriteAllText(folderPath + jsonFileName, json);
 
         int drawnCorrectButtonIndex = r.Next(0, answersNumber);
         
-        TextMeshProUGUI questionTestMesh = (TextMeshProUGUI) questUI.transform.Find("Question").GetComponents(typeof(TextMeshProUGUI))[0];
+        TextMeshProUGUI questionTestMesh = (TextMeshProUGUI) _questUI.transform.Find("Question").GetComponents(typeof(TextMeshProUGUI))[0];
         questionTestMesh.text = userQuestsList[drawnIndex].question;
 
         Transform[] transforms = GetAnswersTransforms(listLength);
@@ -73,12 +82,14 @@ public class Quest : MonoBehaviour
         {
             if (i == drawnCorrectButtonIndex)
             {
+                Debug.Log("Correct on: " + i);
                 TextMeshProUGUI answerTestMesh = (TextMeshProUGUI) transforms[i].Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
                 answerTestMesh.text = userQuestsList[drawnIndex].answers.correct;
                 transforms[i].GetComponent<Button>().onClick.AddListener(ResumeIfCorrectAnswer);
 
             } else
             {
+                Debug.Log("Wrong on: " + i);
                 TextMeshProUGUI answerTestMesh = (TextMeshProUGUI) transforms[i].Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
                 answerTestMesh.text = userQuestsList[drawnIndex].answers.wrong[wrongQuestionIndex];
                 transforms[i].GetComponent<Button>().onClick.AddListener(ResumeIfWrongAnswer);
@@ -86,10 +97,19 @@ public class Quest : MonoBehaviour
             }
         }
     }
+
+    public void DeleteQuestFromQuestUI(int answersNumber)
+    {
+        Transform[] transforms = GetAnswersTransforms(answersNumber);
+        for (int i = 0; i < answersNumber; i++)
+        {
+            transforms[i].GetComponent<Button>().onClick.RemoveAllListeners();
+        }
+    }
     
     private List<UserQuest> LoadJson()
     {
-        using (StreamReader streamReader = new StreamReader(_folderPath + jsonFileName))
+        using (StreamReader streamReader = new StreamReader(DifficultyPath + jsonFileName))
         {
             string json = streamReader.ReadToEnd();
             List<UserQuest> items = JsonConvert.DeserializeObject<List<UserQuest>>(json);
@@ -101,7 +121,7 @@ public class Quest : MonoBehaviour
     {
         Transform[] transforms = new Transform[listLength];
         int i = 0; 
-        foreach (Transform child in questUI.transform)
+        foreach (Transform child in _questUI.transform)
         {
             if (child.name == "Answer")
             {
@@ -114,10 +134,10 @@ public class Quest : MonoBehaviour
 
     public static void ReloadQuestsFile()
     {
-        using (StreamReader streamReader = new StreamReader(_folderPath + _originalJsonFileName))
+        using (StreamReader streamReader = new StreamReader(DifficultyPath + _originalJsonFileName))
         {
             string json = streamReader.ReadToEnd();
-            File.WriteAllText(_folderPath + jsonFileName, json);
+            File.WriteAllText(folderPath + jsonFileName, json);
         }
     }
 }

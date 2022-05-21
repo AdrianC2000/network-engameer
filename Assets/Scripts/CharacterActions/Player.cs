@@ -1,21 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace CharacterActions
 {
     public class Player
     {
         private CharacterController _character;
-        private Vector3 _startingPosition;
+        private Vector3 _respawnPosition;
         private int _deathsCounter;
         private int _correctAnswersCounter;
         private int _totalAnswersCounter; 
+        private bool _firstQuestCall; // True if the quest was loaded, false if it needs to be loaded
+        private List<string> _usedQuestDevices; 
         
-        public Player(CharacterController character, Vector3 startingPosition)
+        public Player(CharacterController character, Vector3 respawnPosition)
         {
             _character = character;
-            _startingPosition = startingPosition;
+            _respawnPosition = respawnPosition;
             _deathsCounter = 0;
             _correctAnswersCounter = 0;
+            _firstQuestCall = false;
+            _usedQuestDevices = new List<string>();
         }
 
         public CharacterController GetCharacter()
@@ -23,9 +29,16 @@ namespace CharacterActions
             return _character;
         }
         
-        public Vector3 GetStartingPosition()
+        public Vector3 GetRespawnPosition()
         {
-            return _startingPosition;
+            Debug.Log("Actual respawn position: " + _respawnPosition);
+            return _respawnPosition;
+        }
+        
+        public void SetRespawnPosition(Vector3 respawnPosition)
+        {
+            Debug.Log("New respawn position: " + respawnPosition);
+            _respawnPosition = respawnPosition;
         }
         
         public int GetDeathsCounter()
@@ -56,6 +69,26 @@ namespace CharacterActions
         public void IncreaseTotalAnswersCounter()
         {
             _totalAnswersCounter = _totalAnswersCounter+=1;
+        }
+        
+        public bool GetFirstQuestCall()
+        {
+            return _firstQuestCall;
+        }
+        
+        public void SetFirstQuestCall(bool firstQuestCall)
+        {
+            _firstQuestCall = firstQuestCall;
+        }
+
+        public List<string> GetUsedQuestDevices()
+        {
+            return _usedQuestDevices;
+        }
+        
+        public void AddUsedDevicesWithQuest(string deviceName)
+        {
+            _usedQuestDevices.Add(deviceName);
         }
         
     }

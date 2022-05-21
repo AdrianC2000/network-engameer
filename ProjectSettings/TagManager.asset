@@ -10,6 +10,7 @@ TagManager:
   - ParentObject
   - Quest
   - Firewall
+  - MovingElement3
   layers:
   - Default
   - TransparentFX
