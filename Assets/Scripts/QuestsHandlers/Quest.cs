@@ -121,6 +121,7 @@ public class Quest
     
     private List<UserQuest> LoadJson()
     {
+        //Application.streamingAssetsPath
         using (StreamReader streamReader = new StreamReader(DifficultyPath + jsonFileName))
         {
             string json = streamReader.ReadToEnd();
