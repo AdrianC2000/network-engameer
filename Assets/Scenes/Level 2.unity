@@ -4697,6 +4697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Router 7
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3ad3e0fd69c83fb4381742fdbfb0655e, type: 3}
+      propertyPath: m_TagString
+      value: Router
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3ad3e0fd69c83fb4381742fdbfb0655e, type: 3}
       propertyPath: m_RootOrder
       value: 35

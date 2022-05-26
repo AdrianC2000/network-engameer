@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CharacterActions;
+using TMPro;
 using UnityEngine;
 
 public class Collider : MonoBehaviour
@@ -112,6 +113,9 @@ public class Collider : MonoBehaviour
                     temporaryQuestCamera.gameObject.SetActive(true);
                     audioSource.clip = standOnQuest;
                     audioSource.Play();
+                    
+                    TMP_InputField textField = questInputUI.transform.Find("AnswerInputField").GetComponentInChildren<TMP_InputField>();
+                    textField.text = "";
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
@@ -134,6 +138,9 @@ public class Collider : MonoBehaviour
                     temporaryQuestCamera.gameObject.SetActive(true);
                     audioSource.clip = standOnQuest;
                     audioSource.Play();
+                    
+                    TMP_InputField textField = questInputUI.transform.Find("AnswerInputField").GetComponentInChildren<TMP_InputField>();
+                    textField.text = "";
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
