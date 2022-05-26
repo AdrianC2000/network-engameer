@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Który z poniższych protokołów nie służy do przenoszenia etykiet MPLS?",
+    "answers": {
+      "correct": "ATM",
+      "wrong": ["LDP", "MP-BGP"]
+    }
+  },
+  {
+    "question": "Ile wynosi wartość pola EXP (MPLS) jeśli DSCP (IPv4) wynosi 10?",
+    "answers": {
+      "correct": "1",
+      "wrong": ["10", "2"]
+    }
+  },
+  {
+    "question": "Jaki jest adres sumaryczny sieci 172.21.136.0/24 i 172.21.143.0/24?",
+    "answers": {
+      "correct": "172.21.136.0/21",
+      "wrong": ["172.21.136.0/20", "172.21.136.0/22"]
+    }
+  },
+  {
+    "question": "Który z poniższych standardów 802.11 może pracować w paśmie 60 GHz?",
+    "answers": {
+      "correct": "802.11ad",
+      "wrong": ["802.11ax", "802.11ac"]
+    }
+  },
+  {
+    "question": "Z jakiego portu korzysta protokół IAPP?",
+    "answers": {
+      "correct": "3517",
+      "wrong": ["5061", "465"]
+    }
+  },
+  {
+    "question": "Ile wynosi administrative distance protokołu ISIS?",
+    "answers": {
+      "correct": "115",
+      "wrong": ["90", "120"]
+    }
+  },
+  {
+    "question": "Długość fali 850 nm występuje w światłowodzie:",
+    "answers": {
+      "correct": "wielomodowym",
+      "wrong": ["jednomodowym", "bezmodowym"]
+    }
+  },
+  {
+    "question": "Który z poniższych obszarów OSPF nie dodaje trasy domyślnej?",
+    "answers": {
+      "correct": "NSSA",
+      "wrong": ["stub", "tottaly stub"]
+    }
+  },
+  {
+    "question": "Ile bitów ma pole S w nagłówku MPLS?",
+    "answers": {
+      "correct": "1 bit",
+      "wrong": ["2 bity", "4 bity"]
+    }
+  },
+  {
+    "question": "Który z poniższych standardów wprowadza WPA3?",
+    "answers": {
+      "correct": "802.11bi",
+      "wrong": ["802.11ba", "802.11bh"]
+    }
+  }
+]

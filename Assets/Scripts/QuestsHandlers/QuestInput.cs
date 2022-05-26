@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using CharacterActions;
 using Newtonsoft.Json;
 using TMPro;
@@ -23,6 +24,7 @@ public class QuestInput
     public static AudioSource audiosource;
     public static AudioClip correctAnswer;
     public static AudioClip wrongAnswer;
+    public static GameObject wrongAnswerAnimation;
 
     public QuestInput(GameObject movingElement, GameObject questUI)
     {
@@ -35,7 +37,9 @@ public class QuestInput
         TextMeshProUGUI textField = (TextMeshProUGUI) _questUI.transform.Find("AnswerInputField").Find("Text Area").Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
         String answer = textField.text;
         answer = answer.Replace("\u200B", "");
-        if (answer.Equals(_correctAnswer))
+        String correctFormatAnswer = answer.Trim();
+        correctFormatAnswer = Regex.Replace(correctFormatAnswer, @"\s+", " ");
+        if (correctFormatAnswer.Equals(_correctAnswer))
         {
             ResumeIfCorrectAnswer();
         }
@@ -62,6 +66,8 @@ public class QuestInput
     
     public void ResumeIfWrongAnswer()
     {
+        wrongAnswerAnimation.SetActive(true);
+        PlayerHandler.ScheduleDeactivation(wrongAnswerAnimation, 2, DateTime.Now);
         PlayerHandler.Respawn(Player);
         Player.SetFirstQuestCall(true);
         Resume(false);
@@ -99,7 +105,8 @@ public class QuestInput
         userQuestsListLeft.Remove(userQuestsList[drawnIndex]);
 
         String json = JsonConvert.SerializeObject(userQuestsListLeft);
-        File.WriteAllText(DifficultyPath + jsonFileName, json);
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", jsonFileName);
+        File.WriteAllText(filePath, json);
         
         TextMeshProUGUI questionTestMesh = (TextMeshProUGUI) _questUI.transform.Find("Question").GetComponents(typeof(TextMeshProUGUI))[0];
         questionTestMesh.text = userQuestsList[drawnIndex].question;
@@ -110,12 +117,13 @@ public class QuestInput
 
     private List<UserQuest> LoadJson()
     {
-        using (StreamReader streamReader = new StreamReader(DifficultyPath + jsonFileName))
-        {
-            string json = streamReader.ReadToEnd();
-            List<UserQuest> items = JsonConvert.DeserializeObject<List<UserQuest>>(json);
-            return items; 
-        }
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", jsonFileName);
+        StreamReader streamReader = new StreamReader(filePath);
+        string json = streamReader.ReadToEnd();
+        streamReader.Close();
+        List<UserQuest> items = JsonConvert.DeserializeObject<List<UserQuest>>(json);
+        return items; 
+        
     }
     
     public void DeleteQuestFromQuestUI()
@@ -125,10 +133,11 @@ public class QuestInput
 
     public static void ReloadQuestsFile()
     {
-        using (StreamReader streamReader = new StreamReader(DifficultyPath + _originalJsonFileName))
-        {
-            string json = streamReader.ReadToEnd();
-            File.WriteAllText(DifficultyPath + jsonFileName, json);
-        }
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", jsonFileName);
+        string filePathOriginal = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", _originalJsonFileName);
+        StreamReader streamReader = new StreamReader(filePathOriginal);
+        string json = streamReader.ReadToEnd();
+        streamReader.Close();
+        File.WriteAllText(filePath, json);
     }
 }

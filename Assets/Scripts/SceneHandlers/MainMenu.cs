@@ -8,7 +8,12 @@ public class MainMenu : MonoBehaviour
     private GameObject mainMenu;
     [SerializeField] 
     private GameObject difficultiesMenu;
-    
+
+    public void Start()
+    {
+        Quest.ReloadQuestsFile(); // TODO -> move those reloads into the finish of the game, not the start
+        QuestInput.ReloadQuestsFile();
+    }
     public void ShowDifficulties()
     {
         mainMenu.SetActive(false);
@@ -19,7 +24,7 @@ public class MainMenu : MonoBehaviour
     {
         String difficultyLevel = EventSystem.current.currentSelectedGameObject.name;
         Quest.DifficultyPath = Quest.folderPath + difficultyLevel + "Quests/";
-        Quest.DifficultyPath = QuestInput.folderPath + difficultyLevel + "InputQuests/";
+        QuestInput.DifficultyPath = QuestInput.folderPath + difficultyLevel + "InputQuests/";
     }
 
     public void ShowMenu()

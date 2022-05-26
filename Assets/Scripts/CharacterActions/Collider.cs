@@ -13,16 +13,24 @@ public class Collider : MonoBehaviour
     private Camera temporaryQuestCamera;
     [SerializeField]
     private GameObject statisticsMenuUI;
+    [SerializeField] 
+    private AudioClip standOnQuest;
+    [SerializeField] 
+    private GameObject finishLevelUI;
+    
 
     private CharacterController _character;
     public static Player Player;
     public static string ActualQuestDeviceName;
-    public static bool IsQuestOn; 
+    public static bool IsQuestOn;
+    public static Vector3 collidedElementPosition; 
+    
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!Player.GetUsedQuestDevices().Contains(collision.gameObject.name))
         {
+            AudioSource audioSource = temporaryQuestCamera.GetComponent<AudioSource>();
             GameObject movingElement;
             // Nothing will be loaded if question on that device has already been answered correctly
             if (collision.gameObject.CompareTag("Firewall"))
@@ -49,6 +57,8 @@ public class Collider : MonoBehaviour
                     IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
+                    audioSource.clip = standOnQuest;
+                    audioSource.Play();
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
@@ -57,6 +67,7 @@ public class Collider : MonoBehaviour
                 else 
                 {
                     // First step on the device -> loading and drawing the quest
+                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, 1, 0);
                     Quest actualQuest = new Quest(movingElement, questUI);
                     actualQuest.DrawTask(3);
                     Player.SetFirstQuestCall(true);
@@ -67,6 +78,8 @@ public class Collider : MonoBehaviour
                     IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
+                    audioSource.clip = standOnQuest;
+                    audioSource.Play();
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
@@ -97,6 +110,8 @@ public class Collider : MonoBehaviour
                     IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
+                    audioSource.clip = standOnQuest;
+                    audioSource.Play();
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
@@ -105,7 +120,9 @@ public class Collider : MonoBehaviour
                 else 
                 {
                     // First step on the device -> loading and drawing the quest
+                    collidedElementPosition = collision.gameObject.transform.position; 
                     QuestInput actualQuest = new QuestInput(movingElement, questInputUI);
+                    QuestInputHandler.questInput = actualQuest;
                     actualQuest.DrawTask();
                     Player.SetFirstQuestCall(true);
                     ActualQuestDeviceName = collision.gameObject.name;
@@ -115,12 +132,25 @@ public class Collider : MonoBehaviour
                     IsQuestOn = true;
                     _character.gameObject.SetActive(false);
                     temporaryQuestCamera.gameObject.SetActive(true);
+                    audioSource.clip = standOnQuest;
+                    audioSource.Play();
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
             }
+        }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            finishLevelUI.SetActive(true);
+            statisticsMenuUI.SetActive(false);
+            IsQuestOn = true;
+            _character.gameObject.SetActive(false);
+            temporaryQuestCamera.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

@@ -8,10 +8,12 @@ namespace CharacterActions
         private GameObject fallenElement;
 
         private Vector3 startingPosition; 
+        private Quaternion startingRotation;
 
         private void Start()
         {
             startingPosition = fallenElement.transform.position;
+            startingRotation = fallenElement.transform.rotation;
         }
         private void Update()
         {
@@ -19,6 +21,7 @@ namespace CharacterActions
             {
                 Rigidbody rb = fallenElement.gameObject.GetComponent<Rigidbody>();
                 fallenElement.transform.position = startingPosition;
+                fallenElement.transform.rotation = startingRotation;
                 Destroy(rb);
             }
         }

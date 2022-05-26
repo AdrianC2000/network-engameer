@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using CharacterActions;
 using Newtonsoft.Json;
 using TMPro;
@@ -22,6 +23,7 @@ public class Quest
     public static AudioSource audiosource; 
     public static AudioClip correctAnswer;
     public static AudioClip wrongAnswer;
+    public static GameObject wrongAnswerAnimation;
 
     public Quest(GameObject movingElement, GameObject questUI)
     {
@@ -37,7 +39,7 @@ public class Quest
         }
 
         Player.IncreaseCorrectAnswersCounter();
-        Player.SetRespawnPosition(Player.GetCharacter().transform.position);
+        Player.SetRespawnPosition(Collider.collidedElementPosition);
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
         DeleteQuestFromQuestUI(3);
@@ -46,6 +48,8 @@ public class Quest
     
     public void ResumeIfWrongAnswer()
     {
+        wrongAnswerAnimation.SetActive(true);
+        PlayerHandler.ScheduleDeactivation(wrongAnswerAnimation, 2, DateTime.Now);
         PlayerHandler.Respawn(Player);
         Player.SetFirstQuestCall(true);
         Resume(false);
@@ -83,7 +87,8 @@ public class Quest
         userQuestsListLeft.Remove(userQuestsList[drawnIndex]);
 
         String json = JsonConvert.SerializeObject(userQuestsListLeft);
-        File.WriteAllText(DifficultyPath + jsonFileName, json);
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", jsonFileName);
+        File.WriteAllText(filePath, json);
 
         int drawnCorrectButtonIndex = r.Next(0, answersNumber);
         
@@ -121,14 +126,13 @@ public class Quest
     
     private List<UserQuest> LoadJson()
     {
-        //Application.streamingAssetsPath
-        using (StreamReader streamReader = new StreamReader(DifficultyPath + jsonFileName))
-        {
-            string json = streamReader.ReadToEnd();
-            List<UserQuest> items = JsonConvert.DeserializeObject<List<UserQuest>>(json);
-            return items; 
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", jsonFileName);
+        StreamReader streamReader = new StreamReader(filePath);
+        string json = streamReader.ReadToEnd();
+        streamReader.Close();
+        List<UserQuest> items = JsonConvert.DeserializeObject<List<UserQuest>>(json);
+        return items;
         }
-    }
 
     private Transform[] GetAnswersTransforms(int listLength)
     {
@@ -147,10 +151,11 @@ public class Quest
 
     public static void ReloadQuestsFile()
     {
-        using (StreamReader streamReader = new StreamReader(DifficultyPath + _originalJsonFileName))
-        {
-            string json = streamReader.ReadToEnd();
-            File.WriteAllText(DifficultyPath + jsonFileName, json);
-        }
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", jsonFileName);
+        string filePathOriginal = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", _originalJsonFileName);
+        StreamReader streamReader = new StreamReader(filePathOriginal);
+        string json = streamReader.ReadToEnd();
+        File.WriteAllText(filePath, json);
+        streamReader.Close();
     }
 }
