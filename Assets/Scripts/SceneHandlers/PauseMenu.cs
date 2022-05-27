@@ -8,10 +8,12 @@ public class PauseMenu : MonoBehaviour
     private GameObject pauseMenuUI;
     [SerializeField]
     private GameObject statisticsMenuUI;
+    [SerializeField]
+    private GameObject temporaryQuestCamera;
     public static Player Player; 
     private Quaternion _cameraRotation;
     public static bool IsGamePaused;
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !Collider.IsQuestOn)
@@ -50,6 +52,13 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        statisticsMenuUI.SetActive(false);
+        Player.GetCharacter().gameObject.SetActive(false);
+        temporaryQuestCamera.gameObject.SetActive(true);
+
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("Menu");
     }
 }

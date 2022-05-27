@@ -57,10 +57,9 @@ public class QuestInput
         }
 
         Player.IncreaseCorrectAnswersCounter();
-        Player.SetRespawnPosition(Player.GetCharacter().transform.position);
+        Player.SetRespawnPosition(Collider.collidedElementPosition);
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
-        DeleteQuestFromQuestUI();
         Resume(true);
     }
     
@@ -105,19 +104,18 @@ public class QuestInput
         userQuestsListLeft.Remove(userQuestsList[drawnIndex]);
 
         String json = JsonConvert.SerializeObject(userQuestsListLeft);
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", jsonFileName);
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "InputQuests", jsonFileName);
         File.WriteAllText(filePath, json);
         
         TextMeshProUGUI questionTestMesh = (TextMeshProUGUI) _questUI.transform.Find("Question").GetComponents(typeof(TextMeshProUGUI))[0];
         questionTestMesh.text = userQuestsList[drawnIndex].question;
 
         _correctAnswer = userQuestsList[drawnIndex].answers.correct;
-        _questUI.transform.Find("ConfirmButton").GetComponent<Button>().onClick.AddListener(CheckInput);
     }
 
     private List<UserQuest> LoadJson()
     {
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", jsonFileName);
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "InputQuests", jsonFileName);
         StreamReader streamReader = new StreamReader(filePath);
         string json = streamReader.ReadToEnd();
         streamReader.Close();
@@ -125,16 +123,11 @@ public class QuestInput
         return items; 
         
     }
-    
-    public void DeleteQuestFromQuestUI()
-    {
-        _questUI.transform.Find("ConfirmButton").GetComponent<Button>().onClick.RemoveAllListeners();
-    }
 
     public static void ReloadQuestsFile()
     {
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", jsonFileName);
-        string filePathOriginal = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "InputQuests", _originalJsonFileName);
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "InputQuests", jsonFileName);
+        string filePathOriginal = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "InputQuests", _originalJsonFileName);
         StreamReader streamReader = new StreamReader(filePathOriginal);
         string json = streamReader.ReadToEnd();
         streamReader.Close();

@@ -87,7 +87,7 @@ public class Quest
         userQuestsListLeft.Remove(userQuestsList[drawnIndex]);
 
         String json = JsonConvert.SerializeObject(userQuestsListLeft);
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", jsonFileName);
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "Quests", jsonFileName);
         File.WriteAllText(filePath, json);
 
         int drawnCorrectButtonIndex = r.Next(0, answersNumber);
@@ -126,7 +126,7 @@ public class Quest
     
     private List<UserQuest> LoadJson()
     {
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", jsonFileName);
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "Quests", jsonFileName);
         StreamReader streamReader = new StreamReader(filePath);
         string json = streamReader.ReadToEnd();
         streamReader.Close();
@@ -151,8 +151,9 @@ public class Quest
 
     public static void ReloadQuestsFile()
     {
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", jsonFileName);
-        string filePathOriginal = System.IO.Path.Combine(Application.persistentDataPath, "AllQuests", DifficultyLevel + "Quests", _originalJsonFileName);
+        Debug.Log(Application.streamingAssetsPath);
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "Quests", jsonFileName);
+        string filePathOriginal = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "Quests", _originalJsonFileName);
         StreamReader streamReader = new StreamReader(filePathOriginal);
         string json = streamReader.ReadToEnd();
         File.WriteAllText(filePath, json);

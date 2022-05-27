@@ -68,7 +68,7 @@ public class Collider : MonoBehaviour
                 else 
                 {
                     // First step on the device -> loading and drawing the quest
-                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, 1, 0);
+                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, (float)1.73, 0);
                     Quest actualQuest = new Quest(movingElement, questUI);
                     actualQuest.DrawTask(3);
                     Player.SetFirstQuestCall(true);
@@ -116,6 +116,8 @@ public class Collider : MonoBehaviour
                     
                     TMP_InputField textField = questInputUI.transform.Find("AnswerInputField").GetComponentInChildren<TMP_InputField>();
                     textField.text = "";
+                    textField.Select();
+                    textField.ActivateInputField();
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
@@ -124,7 +126,7 @@ public class Collider : MonoBehaviour
                 else 
                 {
                     // First step on the device -> loading and drawing the quest
-                    collidedElementPosition = collision.gameObject.transform.position; 
+                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, (float)1.73, 0);
                     QuestInput actualQuest = new QuestInput(movingElement, questInputUI);
                     QuestInputHandler.questInput = actualQuest;
                     actualQuest.DrawTask();
@@ -141,6 +143,8 @@ public class Collider : MonoBehaviour
                     
                     TMP_InputField textField = questInputUI.transform.Find("AnswerInputField").GetComponentInChildren<TMP_InputField>();
                     textField.text = "";
+                    textField.Select();
+                    textField.ActivateInputField();
 
                     Time.timeScale = 0f;
                     Cursor.lockState = CursorLockMode.None;
