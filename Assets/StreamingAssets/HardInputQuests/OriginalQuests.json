@@ -6,25 +6,25 @@
 	}
   },
   {
-    "question": "Dokonaj redystrybucji trasy domyślnej",
+    "question": "Ustaw kierowanie ruchu do tunelu MPLS-TE na podstawie tablicy routingu",
     "answers": {
-	"correct": "default-information originate"
+	"correct": "tunnel mpls traffic-eng autoroute announce"
 	}
   },
   {
-    "question": "Włącz routing IPv6",
+    "question": "Uruchom routing IPv6",
     "answers": {
 	"correct": "ipv6 unicast-routing"
 	}
   },
   {
-    "question": "RIP - wyłącz routing klasowy",
+    "question": "RIP - uruchom routing bezklasowy",
     "answers": {
 	"correct": "no auto-summary"
 	}
   },
   {
-    "question": "Ustaw najwyższe możliwe priorytety tunelu MPLS-TE",
+    "question": "Ustaw najlepsze priorytety tunelu MPLS-TE",
     "answers": {
 	"correct": "tunnel mpls traffic-eng priority 0 0"
 	}

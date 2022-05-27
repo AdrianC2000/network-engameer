@@ -1,6 +1,6 @@
 [
   {
-    "question": "OSPF - dodaj sieć 192.168.1.0/24, obszar 0",
+    "question": "OSPF - dodaj prefix 192.168.1.0/24, obszar 0",
     "answers": {
 	"correct": "network 192.168.1.0 0.0.0.255 area 0"
 	}
@@ -12,21 +12,21 @@
 	}	
   },
   {
-    "question": "Dodaj trasę statyczną do tunelu 100 dla sieci 192.168.0.0/24",
+    "question": "Ustaw 10.0.0.5 jako adres docelowy tunelu MPLS-TE",
     "answers": {
-	"correct": "ip route 192.168.0.0 255.255.255.0 Tunnel 100"
+	"correct": "tunnel destination 10.0.0.5"
 	}
   },
   {
-    "question": "OSPF - ustaw loopback 0 jako router id",
+    "question": "OSPF - ustaw loopback 0 jako router-id",
     "answers": {
-	"correct": "ospf router-id loopback 0"
+	"correct": "router-id loopback 0"
 	}
   },
   {
-    "question": "Włącz obsługę tuneli MPLS-TE",
+    "question": "OSPF - ustaw obszar 5 jako stubby",
     "answers": {
-	"correct": "mpls traffic-eng tunnel"
+	"correct": "area 12 stub"
 	}
   }
 ]

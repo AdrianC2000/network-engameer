@@ -1,12 +1,12 @@
 [
   {
-    "question": "Wyślij ping na adres 192.168.1.1",
+    "question": "Wykonaj ping na adres 192.168.1.1",
     "answers": {
 	"correct": "ping 192.168.1.1"
   	}
   },
   {
-    "question": "Utwórz proces OSPF o numerze 7",
+    "question": "Uruchom proces OSPF o numerze 7",
     "answers": {
 	"correct": "router ospf 7"
   	}
@@ -18,13 +18,13 @@
   	}
   },
   {
-    "question": "Ustaw nazwę routera na R1",
+    "question": "Ustaw status interfejsu jako up",
     "answers": {
-	"correct": "hostname R1"
+	"correct": "no shutdown"
   	}	
   },
   {
-    "question": "Wyślij traceroute na adres 192.168.1.1",
+    "question": "Wykonaj traceroute na adres 192.168.1.1",
     "answers": {
 	"correct": "traceroute 192.168.1.1"
 	}

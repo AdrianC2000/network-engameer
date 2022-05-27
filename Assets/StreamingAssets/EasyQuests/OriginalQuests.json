@@ -7,7 +7,7 @@
     }
   },
   {
-    "question": "Która z poniższych komend nie służy do zmiany adresu IP systemie Linux?",
+    "question": "Która z poniższych komend nie służy do zmiany adresu IP w systemie Linux?",
     "answers": {
       "correct": "netstat",
       "wrong": ["ip addr", "ifconfig"]
@@ -42,14 +42,14 @@
     }
   },
   {
-    "question": "Warstwa sieciowa to w modelu OSI/ISO:",
+    "question": "Warstwa sieciowa w modelu OSI/ISO to:",
     "answers": {
       "correct": "L3",
       "wrong": ["L2", "L4"]
     }
   },
   {
-    "question": "Warstwa łącza danych to w modelu OSI/ISO:",
+    "question": "Warstwa łącza danych w modelu OSI/ISO to:",
     "answers": {
       "correct": "L2",
       "wrong": ["L3", "L4"]

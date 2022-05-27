@@ -7,21 +7,21 @@
     }
   },
   {
-    "question": "Która z poniższych komend wypisze tablicę routingu w systemie Linux?",
+    "question": "Która z poniższych komend wyświetli tablicę routingu w systemie Linux?",
     "answers": {
       "correct": "netstat -rn",
       "wrong": ["netstat -6", "netstat -tupan"]
     }
   },
   {
-    "question": "Która z poniższych ramek rozgłasza informacje o sieci?",
+    "question": "Która z poniższych ramek 802.11 rozgłasza informacje o sieci?",
     "answers": {
       "correct": "beacon",
       "wrong": ["ATIM", "RTS"]
     }
   },
   {
-    "question": "Który z poniższych standardów może pracować w paśmie 5GHz?",
+    "question": "Który z poniższych standardów może pracować w paśmie 5 GHz?",
     "answers": {
       "correct": "802.11ac",
       "wrong": ["802.11b", "802.11ad"]
@@ -42,14 +42,14 @@
     }
   },
   {
-    "question": "Warstwa prezentacji to w modelu OSI/ISO:",
+    "question": "Warstwa prezentacji w modelu OSI/ISO to:",
     "answers": {
       "correct": "L6",
       "wrong": ["L7", "L5"]
     }
   },
   {
-    "question": "Warstwa transportowa to w modelu OSI/ISO:",
+    "question": "Warstwa transportowa w modelu OSI/ISO to:",
     "answers": {
       "correct": "L4",
       "wrong": ["L3", "L2"]

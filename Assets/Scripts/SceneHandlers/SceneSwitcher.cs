@@ -6,7 +6,7 @@ public class SceneSwitcher : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Level 2");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void LoadAnotherLevel()
@@ -19,7 +19,12 @@ public class SceneSwitcher : MonoBehaviour
     
     public void LoadMenu()
     {
-		SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
+    }
+    
+    public void FinishGame()
+    {
+            //TODO
     }
     
     public void ExitGame()
