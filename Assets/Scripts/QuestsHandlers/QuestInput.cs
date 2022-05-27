@@ -25,6 +25,7 @@ public class QuestInput
     public static AudioClip correctAnswer;
     public static AudioClip wrongAnswer;
     public static GameObject wrongAnswerAnimation;
+    public static GameObject correctAnswerAnimation;
 
     public QuestInput(GameObject movingElement, GameObject questUI)
     {
@@ -55,7 +56,8 @@ public class QuestInput
         {
             _movingElement.SetActive(true);
         }
-
+        correctAnswerAnimation.SetActive(true);
+        PlayerHandler.ScheduleDeactivation(correctAnswerAnimation, 2, DateTime.Now);
         Player.IncreaseCorrectAnswersCounter();
         Player.SetRespawnPosition(Collider.collidedElementPosition);
         Player.SetFirstQuestCall(false);

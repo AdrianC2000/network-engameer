@@ -11,7 +11,9 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private AudioClip correctAnswer; 
     [SerializeField] private AudioClip wrongAnswer;
     [SerializeField] private AudioClip startup;
+    [SerializeField] private AudioClip finish;
     [SerializeField] private GameObject wrongAnswerAnimation;
+    [SerializeField] private GameObject correctAnswerAnimation;
     public static DateTime actualStartTime;
     public static bool startCounting;
     public static int secondsToPass; 
@@ -36,6 +38,9 @@ public class PlayerHandler : MonoBehaviour
         QuestInput.wrongAnswer = wrongAnswer;
         Quest.wrongAnswerAnimation = wrongAnswerAnimation;
         QuestInput.wrongAnswerAnimation = wrongAnswerAnimation;
+        Quest.correctAnswerAnimation = correctAnswerAnimation;
+        QuestInput.correctAnswerAnimation = correctAnswerAnimation;
+        Collider.finish = finish;
     }
 
     private void Update()

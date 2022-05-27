@@ -24,8 +24,9 @@ public class Collider : MonoBehaviour
     public static Player Player;
     public static string ActualQuestDeviceName;
     public static bool IsQuestOn;
-    public static Vector3 collidedElementPosition; 
-    
+    public static Vector3 collidedElementPosition;
+    public static AudioClip finish;
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -68,7 +69,7 @@ public class Collider : MonoBehaviour
                 else 
                 {
                     // First step on the device -> loading and drawing the quest
-                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, (float)1.73, 0);
+                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, (float)2.23, 0);
                     Quest actualQuest = new Quest(movingElement, questUI);
                     actualQuest.DrawTask(3);
                     Player.SetFirstQuestCall(true);
@@ -126,7 +127,7 @@ public class Collider : MonoBehaviour
                 else 
                 {
                     // First step on the device -> loading and drawing the quest
-                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, (float)1.73, 0);
+                    collidedElementPosition = collision.gameObject.transform.position + new Vector3(0, (float)2.23, 0);
                     QuestInput actualQuest = new QuestInput(movingElement, questInputUI);
                     QuestInputHandler.questInput = actualQuest;
                     actualQuest.DrawTask();
@@ -157,11 +158,13 @@ public class Collider : MonoBehaviour
         {
             finishLevelUI.SetActive(true);
             statisticsMenuUI.SetActive(false);
-            IsQuestOn = true;
             _character.gameObject.SetActive(false);
             temporaryQuestCamera.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            AudioSource audioSource = temporaryQuestCamera.GetComponent<AudioSource>();
+            audioSource.clip = finish;
+            audioSource.Play();
         }
     }
 

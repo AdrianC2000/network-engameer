@@ -24,7 +24,8 @@ public class Quest
     public static AudioClip correctAnswer;
     public static AudioClip wrongAnswer;
     public static GameObject wrongAnswerAnimation;
-
+    public static GameObject correctAnswerAnimation;
+    
     public Quest(GameObject movingElement, GameObject questUI)
     {
         _movingElement = movingElement;
@@ -33,6 +34,8 @@ public class Quest
 
     public void ResumeIfCorrectAnswer()
     {
+        correctAnswerAnimation.SetActive(true);
+        PlayerHandler.ScheduleDeactivation(correctAnswerAnimation, 2, DateTime.Now);
         if (_movingElement != null)
         {
             _movingElement.SetActive(true);
