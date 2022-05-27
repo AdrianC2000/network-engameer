@@ -4312,7 +4312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 94d71f03ff2a4204cb006c812ac71a90, type: 3}
       propertyPath: m_TagString
-      value: ParentObject
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 94d71f03ff2a4204cb006c812ac71a90, type: 3}
       propertyPath: m_RootOrder
