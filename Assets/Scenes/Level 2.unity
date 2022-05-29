@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44045004, g: 0.5062917, b: 0.53351825, a: 1}
+  m_IndirectSpecularColor: {r: 0.48311216, g: 0.52792263, b: 0.5974373, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6163,7 +6163,9 @@ MonoBehaviour:
   correctAnswer: {fileID: 8300000, guid: 3a892dd49da6b55488542b242c961ad9, type: 3}
   wrongAnswer: {fileID: 8300000, guid: c1b5501c255b9e846901fee807608b9a, type: 3}
   startup: {fileID: 8300000, guid: c230ae1c86e86364ba9ec87e9545b26d, type: 3}
+  finish: {fileID: 0}
   wrongAnswerAnimation: {fileID: 1230253021}
+  correctAnswerAnimation: {fileID: 123774931}
 --- !u!136 &1780549700
 CapsuleCollider:
   m_ObjectHideFlags: 0
