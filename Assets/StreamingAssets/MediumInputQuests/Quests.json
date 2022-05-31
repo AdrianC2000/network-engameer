@@ -1,1 +1,32 @@
-[{"question":"OSPF - dodaj sieć 192.168.1.0/24, obszar 0","answers":{"correct":"network 192.168.1.0 0.0.0.255 area 0","wrong":null}},{"question":"Dokonaj redystrybucji tras statycznych","answers":{"correct":"redistribute static","wrong":null}},{"question":"Włącz obsługę tuneli MPLS-TE","answers":{"correct":"mpls traffic-eng tunnel","wrong":null}}]
+[
+  {
+    "question": "OSPF - dodaj prefix 192.168.1.0/24, obszar 0",
+    "answers": {
+	"correct": "network 192.168.1.0 0.0.0.255 area 0"
+	}
+  },
+  {
+    "question": "Dokonaj redystrybucji tras statycznych",
+    "answers": {
+	"correct": "redistribute static"
+	}	
+  },
+  {
+    "question": "Ustaw 10.0.0.5 jako adres docelowy tunelu MPLS-TE",
+    "answers": {
+	"correct": "tunnel destination 10.0.0.5"
+	}
+  },
+  {
+    "question": "OSPF - ustaw loopback 0 jako router-id",
+    "answers": {
+	"correct": "router-id loopback 0"
+	}
+  },
+  {
+    "question": "OSPF - ustaw obszar 5 jako stubby",
+    "answers": {
+	"correct": "area 12 stub"
+	}
+  }
+]
