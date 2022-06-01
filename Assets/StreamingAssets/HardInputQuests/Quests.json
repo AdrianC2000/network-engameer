@@ -1,1 +1,32 @@
-[{"question":"OSPF - ustaw obszar 12 jako totally stubby","answers":{"correct":"area 12 stub no-summary","wrong":null}},{"question":"Włącz routing IPv6","answers":{"correct":"ipv6 unicast-routing","wrong":null}},{"question":"RIP - wyłącz routing klasowy","answers":{"correct":"no auto-summary","wrong":null}}]
+[
+  {
+    "question": "OSPF - ustaw obszar 12 jako totally stubby",
+    "answers": {
+	"correct": "area 12 stub no-summary"
+	}
+  },
+  {
+    "question": "Ustaw kierowanie ruchu do tunelu MPLS-TE na podstawie tablicy routingu",
+    "answers": {
+	"correct": "tunnel mpls traffic-eng autoroute announce"
+	}
+  },
+  {
+    "question": "Uruchom routing IPv6",
+    "answers": {
+	"correct": "ipv6 unicast-routing"
+	}
+  },
+  {
+    "question": "RIP - uruchom routing bezklasowy",
+    "answers": {
+	"correct": "no auto-summary"
+	}
+  },
+  {
+    "question": "Ustaw najlepsze priorytety tunelu MPLS-TE",
+    "answers": {
+	"correct": "tunnel mpls traffic-eng priority 0 0"
+	}
+  }
+]
