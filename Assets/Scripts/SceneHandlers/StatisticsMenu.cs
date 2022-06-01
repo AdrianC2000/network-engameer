@@ -23,11 +23,15 @@ public class StatisticsMenu : MonoBehaviour
         {
             if (_areStatisticsVisible)
             {
+                Debug.Log("aaa");
                 HideStatistics();
+                Player.setWasStatisticsMenuOn(false);
             }
             else
             {
                 ShowStatistics();
+                Player.setWasStatisticsMenuOn(true);
+                
             }
         }
     }

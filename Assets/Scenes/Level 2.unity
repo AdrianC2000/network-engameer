@@ -6163,9 +6163,10 @@ MonoBehaviour:
   correctAnswer: {fileID: 8300000, guid: 3a892dd49da6b55488542b242c961ad9, type: 3}
   wrongAnswer: {fileID: 8300000, guid: c1b5501c255b9e846901fee807608b9a, type: 3}
   startup: {fileID: 8300000, guid: c230ae1c86e86364ba9ec87e9545b26d, type: 3}
-  finish: {fileID: 0}
+  finish: {fileID: 8300000, guid: d2ed1cfb1d692b5418cb8062788a68c0, type: 3}
   wrongAnswerAnimation: {fileID: 1230253021}
   correctAnswerAnimation: {fileID: 123774931}
+  statisticsMenuUI: {fileID: 1550770778}
 --- !u!136 &1780549700
 CapsuleCollider:
   m_ObjectHideFlags: 0

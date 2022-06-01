@@ -5649,6 +5649,7 @@ MonoBehaviour:
   finish: {fileID: 8300000, guid: d2ed1cfb1d692b5418cb8062788a68c0, type: 3}
   wrongAnswerAnimation: {fileID: 1230253021}
   correctAnswerAnimation: {fileID: 123774931}
+  statisticsMenuUI: {fileID: 1550770778}
 --- !u!136 &1780549700
 CapsuleCollider:
   m_ObjectHideFlags: 0

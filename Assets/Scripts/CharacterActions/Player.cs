@@ -12,7 +12,8 @@ namespace CharacterActions
         private int _correctAnswersCounter;
         private int _totalAnswersCounter; 
         private bool _firstQuestCall; // True if the quest was loaded, false if it needs to be loaded
-        private List<string> _usedQuestDevices; 
+        private List<string> _usedQuestDevices;
+        private bool _wasStatisticsMenuOn; 
         
         public Player(CharacterController character, Vector3 respawnPosition)
         {
@@ -22,6 +23,7 @@ namespace CharacterActions
             _correctAnswersCounter = 0;
             _firstQuestCall = false;
             _usedQuestDevices = new List<string>();
+            _wasStatisticsMenuOn = false;
         }
 
         public CharacterController GetCharacter()
@@ -87,6 +89,16 @@ namespace CharacterActions
         public void AddUsedDevicesWithQuest(string deviceName)
         {
             _usedQuestDevices.Add(deviceName);
+        }
+
+        public void setWasStatisticsMenuOn(bool wasStatisticsMenuOn)
+        {
+            _wasStatisticsMenuOn = wasStatisticsMenuOn;
+        }
+        
+        public bool wasStatisticsMenuOn()
+        {
+            return _wasStatisticsMenuOn;
         }
         
     }

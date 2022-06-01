@@ -25,6 +25,7 @@ public class Quest
     public static AudioClip wrongAnswer;
     public static GameObject wrongAnswerAnimation;
     public static GameObject correctAnswerAnimation;
+    public static GameObject statisticsMenuUI;
     
     public Quest(GameObject movingElement, GameObject questUI)
     {
@@ -74,6 +75,12 @@ public class Quest
             audiosource.clip = wrongAnswer;
             audiosource.Play();
         }
+
+        if (Player.wasStatisticsMenuOn())
+        {
+            statisticsMenuUI.SetActive(true);
+        }
+
         Time.timeScale = 1f;
         Player.IncreaseTotalAnswersCounter();
     }
