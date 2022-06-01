@@ -38,6 +38,7 @@ public class QuestInput
     {
         TextMeshProUGUI textField = (TextMeshProUGUI) _questUI.transform.Find("AnswerInputField").Find("Text Area").Find("Text").GetComponents(typeof(TextMeshProUGUI))[0];
         String answer = textField.text;
+        answer = answer.ToLower();
         answer = answer.Replace("\u200B", "");
         String correctFormatAnswer = answer.Trim();
         correctFormatAnswer = Regex.Replace(correctFormatAnswer, @"\s+", " ");
