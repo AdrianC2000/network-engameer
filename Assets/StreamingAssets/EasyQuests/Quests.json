@@ -1,1 +1,72 @@
-[{"question":"Który z poniższych protokołów jest protokołem routingu zewnętrznego?","answers":{"correct":"BGP","wrong":["RIP","OSPF"]}},{"question":"Która z poniższych komend nie służy do zmiany adresu IP w systemie Linux?","answers":{"correct":"netstat","wrong":["ip addr","ifconfig"]}},{"question":"Na jakiej częstotliwości pracuje Bluetooth?","answers":{"correct":"2,4 GHz","wrong":["5 GHz","1 GHz"]}},{"question":"Z jakiego portu korzysta HTTP?","answers":{"correct":"80","wrong":["7","420"]}},{"question":"Ile bitów ma pole DSCP w pakiecie IP?","answers":{"correct":"6 bitów","wrong":["8 bitów","2 bity"]}},{"question":"Warstwa sieciowa w modelu OSI/ISO to:","answers":{"correct":"L3","wrong":["L2","L4"]}},{"question":"Warstwa łącza danych w modelu OSI/ISO to:","answers":{"correct":"L2","wrong":["L3","L4"]}},{"question":"Co oznacza pole TTL w pakiecie IP?","answers":{"correct":"Time To Live","wrong":["Total Time Length","Try To Laugh"]}}]
+[
+  {
+    "question": "Który z poniższych protokołów jest protokołem routingu zewnętrznego?",
+    "answers": {
+      "correct": "BGP",
+      "wrong": ["RIP", "OSPF"]
+    }
+  },
+  {
+    "question": "Która z poniższych komend nie służy do zmiany adresu IP w systemie Linux?",
+    "answers": {
+      "correct": "netstat",
+      "wrong": ["ip addr", "ifconfig"]
+    }
+  },
+  {
+    "question": "Jaki jest prawidłowy format adresu IPv4?",
+    "answers": {
+      "correct": "192.168.1.1",
+      "wrong": ["127.0.0.256", "::1"]
+    }
+  },
+  {
+    "question": "Na jakiej częstotliwości pracuje Bluetooth?",
+    "answers": {
+      "correct": "2,4 GHz",
+      "wrong": ["5 GHz", "1 GHz"]
+    }
+  },
+  {
+    "question": "Z jakiego portu korzysta HTTP?",
+    "answers": {
+      "correct": "80",
+      "wrong": ["7", "420"]
+    }
+  },
+  {
+    "question": "Ile bitów ma pole DSCP w pakiecie IP?",
+    "answers": {
+      "correct": "6 bitów",
+      "wrong": ["8 bitów", "2 bity"]
+    }
+  },
+  {
+    "question": "Warstwa sieciowa w modelu OSI/ISO to:",
+    "answers": {
+      "correct": "L3",
+      "wrong": ["L2", "L4"]
+    }
+  },
+  {
+    "question": "Warstwa łącza danych w modelu OSI/ISO to:",
+    "answers": {
+      "correct": "L2",
+      "wrong": ["L3", "L4"]
+    }
+  },
+  {
+    "question": "Co oznacza pole TTL w pakiecie IP?",
+    "answers": {
+      "correct": "Time To Live",
+      "wrong": ["Total Time Length", "Try To Laugh"]
+    }
+  },
+  {
+    "question": "Który z poniższych protokołów jest bezpołączeniowy?",
+    "answers": {
+      "correct": "UDP",
+      "wrong": ["TCP", "SCTP"]
+    }
+  }
+]

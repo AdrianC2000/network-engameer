@@ -25,6 +25,8 @@ public class MainMenu : MonoBehaviour
         String difficultyLevel = EventSystem.current.currentSelectedGameObject.name;
         Quest.DifficultyLevel = difficultyLevel;
         QuestInput.DifficultyLevel = difficultyLevel;
+        Quest.ReloadQuestsFile(); // TODO -> move those reloads into the finish of the game, not the start
+        QuestInput.ReloadQuestsFile();
     }
 
     public void ShowMenu()
