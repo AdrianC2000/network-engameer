@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using CharacterActions;
 using Newtonsoft.Json;
+using SceneHandlers;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -43,6 +44,7 @@ public class Quest
         }
 
         Player.IncreaseCorrectAnswersCounter();
+        StatisticsStatic.CorrectAnswersCounter += 1;
         Player.SetRespawnPosition(Collider.collidedElementPosition);
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
@@ -83,6 +85,7 @@ public class Quest
 
         Time.timeScale = 1f;
         Player.IncreaseTotalAnswersCounter();
+        StatisticsStatic.TotalAnswersCounter += 1;
     }
 
     public void DrawTask(int answersNumber)

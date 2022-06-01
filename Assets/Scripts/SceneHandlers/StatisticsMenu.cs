@@ -1,5 +1,6 @@
 using System;
 using CharacterActions;
+using SceneHandlers;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class StatisticsMenu : MonoBehaviour
     private TextMeshProUGUI timerTextMesh;
     [SerializeField]
     private GameObject statisticsMenuUI;
-    private bool _areStatisticsVisible;
+    public static bool AreStatisticsVisible;
     public static Player Player;
     
     private void Update()
@@ -21,17 +22,17 @@ public class StatisticsMenu : MonoBehaviour
         UpdateStatistics();
         if (Input.GetKeyDown(KeyCode.K) && !PauseMenu.IsGamePaused && !Collider.IsQuestOn)
         {
-            if (_areStatisticsVisible)
+            if (AreStatisticsVisible)
             {
-                Debug.Log("aaa");
                 HideStatistics();
                 Player.setWasStatisticsMenuOn(false);
+                StatisticsStatic.wasStatisticsLoaded = false;
             }
             else
             {
                 ShowStatistics();
                 Player.setWasStatisticsMenuOn(true);
-                
+                StatisticsStatic.wasStatisticsLoaded = true;
             }
         }
     }
@@ -39,21 +40,23 @@ public class StatisticsMenu : MonoBehaviour
     private void HideStatistics()
     {
         statisticsMenuUI.SetActive(false);
-        _areStatisticsVisible = false;
+        AreStatisticsVisible = false;
     }
 
-    private void ShowStatistics()
+    public void ShowStatistics()
     {
         statisticsMenuUI.SetActive(true);
-        _areStatisticsVisible = true;
+        AreStatisticsVisible = true;
     }
 
     private void UpdateStatistics()
     {
-        deathsCounterTextMesh.text = "UPADKI: " + Player.GetDeathsCounter();
-        if (Player.GetTotalAnswersCounter() != 0)
+        // deathsCounterTextMesh.text = "UPADKI: " + Player.GetDeathsCounter();
+        deathsCounterTextMesh.text = "UPADKI: " + StatisticsStatic.DeathsCounter;
+        if (StatisticsStatic.TotalAnswersCounter != 0)
         {
-            double fraction = (double) Player.GetCorrectAnswersCounter() / (double) Player.GetTotalAnswersCounter();
+            // double fraction = (double) Player.GetCorrectAnswersCounter() / (double) Player.GetTotalAnswersCounter();
+            double fraction = (double) StatisticsStatic.CorrectAnswersCounter / (double) StatisticsStatic.TotalAnswersCounter;
             double percentage = Math.Round(fraction, 2) * 100;
             correctAnswersPercentageTextMesh.text = "POPRAWNE ODPOWIEDZI: " + percentage + "%";
         } else

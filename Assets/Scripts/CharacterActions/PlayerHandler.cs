@@ -1,5 +1,6 @@
 using System;
 using CharacterActions;
+using SceneHandlers;
 using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
@@ -44,6 +45,11 @@ public class PlayerHandler : MonoBehaviour
         Collider.finish = finish;
         Quest.statisticsMenuUI = statisticsMenuUI;
         QuestInput.statisticsMenuUI = statisticsMenuUI;
+        if (StatisticsStatic.wasStatisticsLoaded)
+        {
+            StatisticsMenu.AreStatisticsVisible = true;
+            statisticsMenuUI.SetActive(true);
+        }
     }
 
     private void Update()
@@ -73,6 +79,7 @@ public class PlayerHandler : MonoBehaviour
             _isFallen = false; 
             Respawn(_player);
             _player.IncreaseDeathsCounter();
+            StatisticsStatic.DeathsCounter += 1;
         }
     }
 
