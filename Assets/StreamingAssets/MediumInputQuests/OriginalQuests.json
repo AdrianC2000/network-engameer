@@ -26,7 +26,7 @@
   {
     "question": "OSPF - ustaw obszar 5 jako stubby",
     "answers": {
-	"correct": "area 12 stub"
+	"correct": "area 5 stub"
 	}
   }
 ]

@@ -24,7 +24,8 @@ public class SceneSwitcher : MonoBehaviour
     
     public void FinishGame()
     {
-            //TODO
+        SceneManager.LoadScene("Menu");
+ 		//Destroy(SceneManager.GetSceneByName("Menu").Find("Music"));
     }
     
     public void ExitGame()
