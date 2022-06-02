@@ -1,6 +1,7 @@
 using CharacterActions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject temporaryQuestCamera;
     public static Player Player; 
-    private Quaternion _cameraRotation;
     public static bool IsGamePaused;
+    public static GameObject FPSController;
 
     void Update()
     {
@@ -28,23 +29,23 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        
-        if (IsGamePaused)
-        {
-            Player.GetCharacter().GetComponentInChildren<Camera>().transform.rotation = _cameraRotation;
-        }
     }
 
     public void Resume()
     {
+        FPSController.GetComponent<FirstPersonController>().enabled = true;
         pauseMenuUI.SetActive(false);
+        Player.GetCharacter().enabled = true;
         Time.timeScale = 1f;
         IsGamePaused = false;
     }
 
     private void Pause()
     {
-        _cameraRotation = Player.GetCharacter().GetComponentInChildren<Camera>().transform.rotation;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        FPSController.GetComponent<FirstPersonController>().enabled = false;
+        Player.GetCharacter().enabled = false;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         IsGamePaused = true;

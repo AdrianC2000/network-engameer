@@ -20,8 +20,6 @@ public class PlayerHandler : MonoBehaviour
     public static bool startCounting;
     public static int secondsToPass; 
     public static GameObject gameObjectToBeDeactivated;
-
-
     private bool _isFallen;
     
     private void Start()
@@ -31,6 +29,7 @@ public class PlayerHandler : MonoBehaviour
         _player = new Player(character, character.transform.position);
         Collider.Player = _player;
         PauseMenu.Player = _player;
+        PauseMenu.FPSController = transform.gameObject;
         StatisticsMenu.Player = _player;
         Quest.audiosource = audioSource;
         QuestInput.audiosource = audioSource;
@@ -45,7 +44,7 @@ public class PlayerHandler : MonoBehaviour
         Collider.finish = finish;
         Quest.statisticsMenuUI = statisticsMenuUI;
         QuestInput.statisticsMenuUI = statisticsMenuUI;
-        if (StatisticsStatic.wasStatisticsLoaded)
+        if (StaticContainer.WereStatisticsLoaded)
         {
             StatisticsMenu.AreStatisticsVisible = true;
             statisticsMenuUI.SetActive(true);
@@ -78,8 +77,7 @@ public class PlayerHandler : MonoBehaviour
         {
             _isFallen = false; 
             Respawn(_player);
-            _player.IncreaseDeathsCounter();
-            StatisticsStatic.DeathsCounter += 1;
+            StaticContainer.DeathsCounter += 1;
         }
     }
 

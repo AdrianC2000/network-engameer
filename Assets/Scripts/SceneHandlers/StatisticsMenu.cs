@@ -26,13 +26,13 @@ public class StatisticsMenu : MonoBehaviour
             {
                 HideStatistics();
                 Player.setWasStatisticsMenuOn(false);
-                StatisticsStatic.wasStatisticsLoaded = false;
+                StaticContainer.WereStatisticsLoaded = false;
             }
             else
             {
                 ShowStatistics();
                 Player.setWasStatisticsMenuOn(true);
-                StatisticsStatic.wasStatisticsLoaded = true;
+                StaticContainer.WereStatisticsLoaded = true;
             }
         }
     }
@@ -52,11 +52,11 @@ public class StatisticsMenu : MonoBehaviour
     private void UpdateStatistics()
     {
         // deathsCounterTextMesh.text = "UPADKI: " + Player.GetDeathsCounter();
-        deathsCounterTextMesh.text = "UPADKI: " + StatisticsStatic.DeathsCounter;
-        if (StatisticsStatic.TotalAnswersCounter != 0)
+        deathsCounterTextMesh.text = "UPADKI: " + StaticContainer.DeathsCounter;
+        if (StaticContainer.TotalAnswersCounter != 0)
         {
             // double fraction = (double) Player.GetCorrectAnswersCounter() / (double) Player.GetTotalAnswersCounter();
-            double fraction = (double) StatisticsStatic.CorrectAnswersCounter / (double) StatisticsStatic.TotalAnswersCounter;
+            double fraction = (double) StaticContainer.CorrectAnswersCounter / (double) StaticContainer.TotalAnswersCounter;
             double percentage = Math.Round(fraction, 2) * 100;
             correctAnswersPercentageTextMesh.text = "POPRAWNE ODPOWIEDZI: " + percentage + "%";
         } else

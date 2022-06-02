@@ -17,8 +17,6 @@ public class Quest
     public static Camera TemporaryQuestCamera;
     public static Player Player;
     public static String DifficultyLevel = "Easy";
-    public static string folderPath = Directory.GetCurrentDirectory() + "/Assets/Scripts/QuestsHandlers/";
-    public static string DifficultyPath = folderPath + DifficultyLevel + "Quests/";
     static string jsonFileName = "Quests.json";
     static string _originalJsonFileName = "OriginalQuests.json";
     public static AudioSource audiosource; 
@@ -43,8 +41,7 @@ public class Quest
             _movingElement.SetActive(true);
         }
 
-        Player.IncreaseCorrectAnswersCounter();
-        StatisticsStatic.CorrectAnswersCounter += 1;
+        StaticContainer.CorrectAnswersCounter += 1;
         Player.SetRespawnPosition(Collider.collidedElementPosition);
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
@@ -78,14 +75,13 @@ public class Quest
             audiosource.Play();
         }
 
-        if (Player.wasStatisticsMenuOn())
+        if (StaticContainer.WereStatisticsLoaded)
         {
             statisticsMenuUI.SetActive(true);
         }
 
         Time.timeScale = 1f;
-        Player.IncreaseTotalAnswersCounter();
-        StatisticsStatic.TotalAnswersCounter += 1;
+        StaticContainer.TotalAnswersCounter += 1;
     }
 
     public void DrawTask(int answersNumber)
@@ -164,7 +160,6 @@ public class Quest
 
     public static void ReloadQuestsFile()
     {
-        Debug.Log(Application.streamingAssetsPath);
         string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "Quests", jsonFileName);
         string filePathOriginal = System.IO.Path.Combine(Application.streamingAssetsPath, DifficultyLevel + "Quests", _originalJsonFileName);
         StreamReader streamReader = new StreamReader(filePathOriginal);

@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using CharacterActions;
 using Newtonsoft.Json;
+using SceneHandlers;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -60,7 +61,7 @@ public class QuestInput
         }
         correctAnswerAnimation.SetActive(true);
         PlayerHandler.ScheduleDeactivation(correctAnswerAnimation, 2, DateTime.Now);
-        Player.IncreaseCorrectAnswersCounter();
+        StaticContainer.CorrectAnswersCounter += 1;
         Player.SetRespawnPosition(Collider.collidedElementPosition);
         Player.SetFirstQuestCall(false);
         Player.AddUsedDevicesWithQuest(Collider.ActualQuestDeviceName);
@@ -99,7 +100,7 @@ public class QuestInput
         }
         
         Time.timeScale = 1f;
-        Player.IncreaseTotalAnswersCounter();
+        StaticContainer.TotalAnswersCounter += 1;
     }
 
     public void DrawTask()

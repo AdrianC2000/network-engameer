@@ -1,4 +1,5 @@
 using System;
+using SceneHandlers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,13 +20,13 @@ public class SceneSwitcher : MonoBehaviour
     
     public void LoadMenu()
     {
+        Destroy(StaticContainer.Music);
         SceneManager.LoadScene("Menu");
     }
     
     public void FinishGame()
     {
         SceneManager.LoadScene("Menu");
- 		//Destroy(SceneManager.GetSceneByName("Menu").Find("Music"));
     }
     
     public void ExitGame()
