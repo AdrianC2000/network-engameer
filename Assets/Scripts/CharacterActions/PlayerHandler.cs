@@ -2,6 +2,7 @@ using System;
 using CharacterActions;
 using SceneHandlers;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerHandler : MonoBehaviour
 {
@@ -48,6 +49,14 @@ public class PlayerHandler : MonoBehaviour
         {
             StatisticsMenu.AreStatisticsVisible = true;
             statisticsMenuUI.SetActive(true);
+        }
+
+        if (PauseMenu.IsGamePaused)
+        {
+            PauseMenu.FPSController.GetComponent<FirstPersonController>().enabled = true;
+            _player.GetCharacter().enabled = true;
+            Time.timeScale = 1f;
+            PauseMenu.IsGamePaused = false;
         }
     }
 

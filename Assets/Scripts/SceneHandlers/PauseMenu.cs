@@ -1,4 +1,5 @@
 using CharacterActions;
+using SceneHandlers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -38,6 +39,10 @@ public class PauseMenu : MonoBehaviour
         Player.GetCharacter().enabled = true;
         Time.timeScale = 1f;
         IsGamePaused = false;
+        if (StaticContainer.WereStatisticsLoaded)
+        {
+            statisticsMenuUI.SetActive(true);
+        }
     }
 
     private void Pause()
