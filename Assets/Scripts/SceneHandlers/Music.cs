@@ -8,6 +8,5 @@ public class Music : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        StaticContainer.Music = transform.gameObject;
     }
 }

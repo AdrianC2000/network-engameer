@@ -20,12 +20,7 @@ public class SceneSwitcher : MonoBehaviour
     
     public void LoadMenu()
     {
-        Destroy(StaticContainer.Music);
-        SceneManager.LoadScene("Menu");
-    }
-    
-    public void FinishGame()
-    {
+        Destroy(GameObject.Find("Music"));
         SceneManager.LoadScene("Menu");
     }
     

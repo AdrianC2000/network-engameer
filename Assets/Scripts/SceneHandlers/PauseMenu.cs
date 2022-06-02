@@ -60,6 +60,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        Destroy(GameObject.Find("Music"));
         SceneManager.LoadScene("Menu");
     }
 }
