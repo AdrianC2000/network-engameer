@@ -31,7 +31,6 @@ public class PlayerHandler : MonoBehaviour
         Collider.Player = _player;
         PauseMenu.Player = _player;
         PauseMenu.FPSController = transform.gameObject;
-        StatisticsMenu.Player = _player;
         Quest.audiosource = audioSource;
         QuestInput.audiosource = audioSource;
         Quest.correctAnswer = correctAnswer;

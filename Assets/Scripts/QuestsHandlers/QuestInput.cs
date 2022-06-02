@@ -94,7 +94,7 @@ public class QuestInput
             audiosource.Play();
         }
         
-        if (Player.wasStatisticsMenuOn())
+        if (StaticContainer.WereStatisticsLoaded)
         {
             statisticsMenuUI.SetActive(true);
         }

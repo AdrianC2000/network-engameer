@@ -10,7 +10,6 @@ namespace CharacterActions
         private Vector3 _respawnPosition;
         private bool _firstQuestCall; // True if the quest was loaded, false if it needs to be loaded
         private List<string> _usedQuestDevices;
-        private bool _wasStatisticsMenuOn; 
         
         public Player(CharacterController character, Vector3 respawnPosition)
         {
@@ -18,7 +17,6 @@ namespace CharacterActions
             _respawnPosition = respawnPosition;
             _firstQuestCall = false;
             _usedQuestDevices = new List<string>();
-            _wasStatisticsMenuOn = false;
         }
 
         public CharacterController GetCharacter()
@@ -55,16 +53,5 @@ namespace CharacterActions
         {
             _usedQuestDevices.Add(deviceName);
         }
-
-        public void setWasStatisticsMenuOn(bool wasStatisticsMenuOn)
-        {
-            _wasStatisticsMenuOn = wasStatisticsMenuOn;
-        }
-        
-        public bool wasStatisticsMenuOn()
-        {
-            return _wasStatisticsMenuOn;
-        }
-        
     }
 }
